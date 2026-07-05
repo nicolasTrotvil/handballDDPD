@@ -108,6 +108,7 @@ body {
   background: var(--gris-claro);
   outline: none;
   -webkit-appearance: none;
+  appearance: none;
 }
 
 .field input:focus, .field select:focus { border-color: var(--verde); }
@@ -392,6 +393,23 @@ body {
   line-height: 1.5;
 }
 
+.obs-textarea {
+  width: 100%;
+  min-height: 120px;
+  border: 1.5px solid var(--rule);
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: var(--gris-oscuro);
+  background: var(--gris-claro);
+  outline: none;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.obs-textarea:focus { border-color: var(--verde); }
+
 .radio-group { display: flex; flex-direction: column; gap: 8px; }
 
 .radio-item {
@@ -599,9 +617,10 @@ body {
           <option value="">Seleccioná</option>
           <option>Mini Handball</option>
           <option>Infantil</option>
+          <option>Menor</option>
           <option>Cadete</option>
           <option>Juvenil</option>
-          <option>Adulto</option>
+          <option>Junior</option>
           <option>Mayor</option>
         </select>
       </div>
@@ -612,21 +631,10 @@ body {
     </div>
   </div>
 
-  <!-- LEYENDA -->
-  <div class="leyenda">
-    <span class="lbadge lb-b">Básico</span>
-    <span class="leyenda-desc">Accesible con conocimiento general</span>
-    <span class="leyenda-sep">·</span>
-    <span class="lbadge lb-a">Avanzado</span>
-    <span class="leyenda-desc">Requiere más formación</span>
-    <span class="leyenda-sep">·</span>
-    <span class="lbadge lb-e">Experto</span>
-    <span class="leyenda-desc">Contenido a trabajar</span>
-  </div>
 
   <!-- DIMENSIÓN I -->
   <div class="dim">
-    <div class="dim-hd open" onclick="toggleDim(this)">
+    <div class="dim-hd" onclick="toggleDim(this)">
       <div class="dim-num">I</div>
       <div class="dim-info">
         <div class="dim-title">Técnica Individual</div>
@@ -634,10 +642,10 @@ body {
       </div>
       <div class="dim-arrow">▼</div>
     </div>
-    <div class="dim-body open">
+    <div class="dim-body">
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Tipo de lanzamiento predominante</div><span class="nivel-badge nb-a">Avanzado</span></div>
+        <div class="ind-top"><div class="ind-title">Tipo de lanzamiento predominante</div></div>
         <div class="ind-desc">¿Qué tipo de lanzamiento usan los jugadores con más frecuencia?</div>
         <div class="checks-title">Marcá los que observás</div>
         <div class="checks">
@@ -645,7 +653,7 @@ body {
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">En suspensión (salto)</span></label>
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">En caída</span></label>
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">De extremo (ángulo cerrado)</span></label>
-          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Penalty / 7 metros</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">7 metros</span></label>
         </div>
         <div class="sep"></div>
         <div class="escala-title">Calidad general del lanzamiento</div>
@@ -659,7 +667,7 @@ body {
       </div>
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Pase y recepción</div><span class="nivel-badge nb-b">Básico</span></div>
+        <div class="ind-top"><div class="ind-title">Pase y recepción</div></div>
         <div class="ind-desc">¿Cómo es la calidad del pase y la recepción durante el partido?</div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Pases precisos y con velocidad adecuada</span></label>
@@ -680,26 +688,51 @@ body {
       </div>
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Finta y 1 vs 1</div><span class="nivel-badge nb-e">Experto</span></div>
-        <div class="nota-exp">Este indicador requiere conocer los tipos de finta (cuerpo, brazo, mirada) y el concepto de disociación segmentaria. Si no lo trabajaste aún, marcá "No puedo evaluarlo" — es un contenido que vas a estudiar más adelante.</div>
+        <div class="ind-top"><div class="ind-title">Finta y 1 vs 1</div></div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Se observan fintas de cuerpo</span></label>
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Se observan fintas de brazo / amago de lanzamiento</span></label>
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Se observan fintas de mirada</span></label>
-          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">No se observan fintas claras</span></label>
-          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">No puedo evaluarlo todavía</span></label>
-        </div>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">No se observan fintas claras</span></label>        </div>
       </div>
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Técnica defensiva individual</div><span class="nivel-badge nb-e">Experto</span></div>
-        <div class="nota-exp">Para evaluar este indicador necesitás conocer los sistemas defensivos y la posición básica defensiva del handball. Son contenidos que vas a profundizar en las próximas unidades.</div>
+        <div class="ind-top"><div class="ind-title">Técnica defensiva individual</div></div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Defensores en posición básica correcta (rodillas flexionadas, brazos activos)</span></label>
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Marcación individual visible</span></label>
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Defensa en zona (cada uno cuida un espacio)</span></label>
-          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Defensa desorganizada / sin sistema claro</span></label>
-          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">No puedo evaluarlo todavía</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Defensa desorganizada / sin sistema claro</span></label>        </div>
+      </div>
+
+      <div class="ind">
+        <div class="ind-top"><div class="ind-title">Dribling</div></div>
+        <div class="ind-desc">¿Los jugadores utilizan el bote como recurso técnico en situaciones de juego?</div>
+        <div class="checks">
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Dribling alto para avanzar en velocidad</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Dribling bajo para proteger el balón ante la presión defensiva</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Dribling innecesario que genera pérdida de balón</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">No se observa uso del dribling</span></label>
+        </div>
+        <div class="sep"></div>
+        <div class="escala-title">Efectividad del dribling</div>
+        <div class="escala">
+          <input type="radio" name="e-t3" id="e-t3-1"><label for="e-t3-1">No se<br>observa</label>
+          <input type="radio" name="e-t3" id="e-t3-2"><label for="e-t3-2">Muy<br>bajo</label>
+          <input type="radio" name="e-t3" id="e-t3-3"><label for="e-t3-3">Regular</label>
+          <input type="radio" name="e-t3" id="e-t3-4"><label for="e-t3-4">Bueno</label>
+          <input type="radio" name="e-t3" id="e-t3-5"><label for="e-t3-5">Muy<br>bueno</label>
+        </div>
+      </div>
+
+      <div class="ind">
+        <div class="ind-top"><div class="ind-title">Posición básica y desplazamientos sin balón</div></div>
+        <div class="ind-desc">¿Los jugadores sin balón mantienen una postura activa y se desplazan con intención táctica?</div>
+        <div class="checks">
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Posición básica activa (rodillas semiflexionadas, brazos disponibles)</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Detenciones y cambios de peso bien ejecutados</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Desplazamientos con cambios de ritmo y dirección</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Jugadores sin balón pasivos / sin postura activa</span></label>
         </div>
       </div>
 
@@ -719,7 +752,7 @@ body {
     <div class="dim-body">
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Toma de decisión con balón</div><span class="nivel-badge nb-b">Básico</span></div>
+        <div class="ind-top"><div class="ind-title">Toma de decisión con balón</div></div>
         <div class="ind-desc">¿El jugador con balón elige correctamente entre lanzar, pasar o avanzar?</div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Predomina el lanzamiento individual (sin pasar)</span></label>
@@ -739,7 +772,7 @@ body {
       </div>
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Desmarque y creación de espacios</div><span class="nivel-badge nb-a">Avanzado</span></div>
+        <div class="ind-top"><div class="ind-title">Desmarque y creación de espacios</div></div>
         <div class="ind-desc">¿Los jugadores sin balón se mueven para generar opciones de pase?</div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Los jugadores se desmarcan activamente</span></label>
@@ -759,24 +792,47 @@ body {
       </div>
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Rol del pivot: bloqueo y pantalla</div><span class="nivel-badge nb-e">Experto</span></div>
-        <div class="nota-exp">Para evaluar este indicador necesitás conocer los conceptos de bloqueo y pantalla táctica. Son medios tácticos específicos del handball que vas a estudiar en profundidad más adelante.</div>
+        <div class="ind-top"><div class="ind-title">Rol del pivot: bloqueo y pantalla</div></div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">El pivot se mueve para generar espacios a compañeros</span></label>
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">El pivot recibe pases dentro del área</span></label>
-          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">El pivot no participa activamente del juego</span></label>
-          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">No puedo evaluarlo todavía</span></label>
-        </div>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">El pivot no participa activamente del juego</span></label>        </div>
       </div>
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Juego del extremo en ángulo cerrado</div><span class="nivel-badge nb-e">Experto</span></div>
-        <div class="nota-exp">La situación de ángulo cerrado es una problemática táctica específica del extremo. Requiere conocer las opciones disponibles en esa posición.</div>
+        <div class="ind-top"><div class="ind-title">Juego del extremo en ángulo cerrado</div></div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Fuerza el lanzamiento desde el ángulo</span></label>
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Devuelve el balón al base o lateral</span></label>
-          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Busca el pase al pivot dentro del área</span></label>
-          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">No puedo evaluarlo todavía</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Busca el pase al pivot dentro del área</span></label>        </div>
+      </div>
+
+      <div class="ind">
+        <div class="ind-top"><div class="ind-title">Fijación del defensor</div></div>
+        <div class="ind-desc">¿El jugador con balón atrae intencionalmente al defensor para liberar a un compañero?</div>
+        <div class="checks">
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Se observan fijaciones claras antes de pasar o desmarcar</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">El jugador fija y libera al compañero desmarcado</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">No hay fijaciones visibles: se pasa sin crear situación previa</span></label>        </div>
+      </div>
+
+      <div class="ind">
+        <div class="ind-top"><div class="ind-title">Acciones defensivas individuales</div></div>
+        <div class="ind-desc">¿El defensor actúa correctamente ante su atacante directo?</div>
+        <div class="checks">
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Disuade activamente el lanzamiento (cierra el ángulo)</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Intenta interceptar pases</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Marca al atacante sin perder posición</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Pierde con facilidad al atacante en 1 vs 1</span></label>
+        </div>
+        <div class="sep"></div>
+        <div class="escala-title">Calidad de la acción defensiva individual</div>
+        <div class="escala">
+          <input type="radio" name="e-ti3" id="e-ti3-1"><label for="e-ti3-1">No se<br>observa</label>
+          <input type="radio" name="e-ti3" id="e-ti3-2"><label for="e-ti3-2">Muy<br>bajo</label>
+          <input type="radio" name="e-ti3" id="e-ti3-3"><label for="e-ti3-3">Regular</label>
+          <input type="radio" name="e-ti3" id="e-ti3-4"><label for="e-ti3-4">Bueno</label>
+          <input type="radio" name="e-ti3" id="e-ti3-5"><label for="e-ti3-5">Muy<br>bueno</label>
         </div>
       </div>
 
@@ -796,7 +852,7 @@ body {
     <div class="dim-body">
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Circulación del balón en ataque</div><span class="nivel-badge nb-b">Básico</span></div>
+        <div class="ind-top"><div class="ind-title">Circulación del balón en ataque</div></div>
         <div class="ind-desc">¿El balón pasa por todos los jugadores o siempre va al mismo?</div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">El balón circula por todas las posiciones</span></label>
@@ -817,7 +873,7 @@ body {
       </div>
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Contraataque y transición</div><span class="nivel-badge nb-a">Avanzado</span></div>
+        <div class="ind-top"><div class="ind-title">Contraataque y transición</div></div>
         <div class="ind-desc">¿El equipo aprovecha las recuperaciones para atacar rápido?</div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Hay contraataque organizado tras recuperar el balón</span></label>
@@ -837,18 +893,15 @@ body {
       </div>
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Sistema defensivo</div><span class="nivel-badge nb-e">Experto</span></div>
-        <div class="nota-exp">Identificar el sistema defensivo (6:0, 5:1, 4:2, 3:2:1…) requiere conocer los sistemas defensivos del handball. Es un contenido clave que vas a trabajar en las próximas unidades.</div>
+        <div class="ind-top"><div class="ind-title">Sistema defensivo</div></div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Todos los defensores en línea (posible 6:0)</span></label>
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Un defensor adelantado (posible 5:1)</span></label>
-          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Defensa mixta / sin sistema claro</span></label>
-          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">No puedo identificar el sistema todavía</span></label>
-        </div>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Defensa mixta / sin sistema claro</span></label>        </div>
       </div>
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Superioridad numérica</div><span class="nivel-badge nb-a">Avanzado</span></div>
+        <div class="ind-top"><div class="ind-title">Superioridad numérica</div></div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Reconocen y aprovechan situaciones de 2v1 o 3v2</span></label>
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Generan superioridades pero no las resuelven bien</span></label>
@@ -858,14 +911,37 @@ body {
       </div>
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Cruce, paralela y penetración</div><span class="nivel-badge nb-e">Experto</span></div>
-        <div class="nota-exp">El cruce, la paralela y la penetración son medios tácticos colectivos ofensivos del handball. Sin conocerlos es muy difícil identificarlos intencionalmente. Son contenidos centrales de las próximas unidades.</div>
+        <div class="ind-top"><div class="ind-title">Cruce, paralela y penetración</div></div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Se observan cruces entre jugadores</span></label>
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Se observan penetraciones coordinadas</span></label>
-          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Se observan pases en paralela</span></label>
-          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">No puedo identificarlos todavía</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Se observan pases en paralela</span></label>        </div>
+      </div>
+
+      <div class="ind">
+        <div class="ind-top"><div class="ind-title">Pase y va</div></div>
+        <div class="ind-desc">¿Se observa el medio táctico "pase y va"? El jugador que pasa continúa su desplazamiento de inmediato para recibir nuevamente o liberar espacio.</div>
+        <div class="checks">
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Se observa pase y va con continuación clara de carrera</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Se pasa pero el jugador queda estático (sin "va")</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">La defensa responde correctamente al pase y va</span></label>        </div>
+        <div class="sep"></div>
+        <div class="escala-title">Efectividad del pase y va</div>
+        <div class="escala">
+          <input type="radio" name="e-tc3" id="e-tc3-1"><label for="e-tc3-1">No se<br>observa</label>
+          <input type="radio" name="e-tc3" id="e-tc3-2"><label for="e-tc3-2">Muy<br>bajo</label>
+          <input type="radio" name="e-tc3" id="e-tc3-3"><label for="e-tc3-3">Regular</label>
+          <input type="radio" name="e-tc3" id="e-tc3-4"><label for="e-tc3-4">Bueno</label>
+          <input type="radio" name="e-tc3" id="e-tc3-5"><label for="e-tc3-5">Muy<br>bueno</label>
         </div>
+      </div>
+
+      <div class="ind">
+        <div class="ind-top"><div class="ind-title">Basculación, coberturas y colaboración defensa-portero</div></div>
+        <div class="checks">
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Se observa basculación colectiva (toda la defensa se desplaza con el balón)</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Los defensores se cubren entre sí ante un desborde</span></label>
+          <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Hay colaboración visible entre defensa y portero</span></label>        </div>
       </div>
 
     </div>
@@ -884,7 +960,7 @@ body {
     <div class="dim-body">
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Comunicación verbal entre jugadores</div><span class="nivel-badge nb-b">Básico</span></div>
+        <div class="ind-top"><div class="ind-title">Comunicación verbal entre jugadores</div></div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Se comunican activamente durante el juego</span></label>
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Hay un jugador que organiza y da indicaciones</span></label>
@@ -903,7 +979,7 @@ body {
       </div>
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Cohesión ante el error</div><span class="nivel-badge nb-b">Básico</span></div>
+        <div class="ind-top"><div class="ind-title">Cohesión ante el error</div></div>
         <div class="ind-desc">¿Cómo reacciona el equipo ante un gol recibido o una pérdida?</div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Se apoyan y alientan mutuamente</span></label>
@@ -923,7 +999,7 @@ body {
       </div>
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Participación equitativa</div><span class="nivel-badge nb-b">Básico</span></div>
+        <div class="ind-top"><div class="ind-title">Participación equitativa</div></div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Todos los jugadores participan activamente</span></label>
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Hay jugadores que desaparecen del juego</span></label>
@@ -934,7 +1010,7 @@ body {
       </div>
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Gestión del tiempo muerto</div><span class="nivel-badge nb-a">Avanzado</span></div>
+        <div class="ind-top"><div class="ind-title">Gestión del tiempo muerto</div></div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">El entrenador / capitán da consignas claras</span></label>
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Los jugadores incorporan los ajustes al volver al juego</span></label>
@@ -944,7 +1020,7 @@ body {
       </div>
 
       <div class="ind">
-        <div class="ind-top"><div class="ind-title">Presión y momentos críticos</div><span class="nivel-badge nb-a">Avanzado</span></div>
+        <div class="ind-top"><div class="ind-title">Presión y momentos críticos</div></div>
         <div class="ind-desc">¿Cómo responde el equipo en los últimos minutos o ante un marcador adverso?</div>
         <div class="checks">
           <label class="check-item"><input type="checkbox"><div class="check-box"></div><span class="check-label">Mantiene el sistema táctico bajo presión</span></label>
@@ -960,7 +1036,7 @@ body {
   <!-- SÍNTESIS -->
   <div class="dim">
     <div class="dim-hd" onclick="toggleDim(this)">
-      <div class="dim-num" style="font-size:9px;">SIN</div>
+      <div class="dim-num">V</div>
       <div class="dim-info">
         <div class="dim-title">Síntesis del Observador</div>
         <div class="dim-sub">Reflexión final y transferencia didáctica</div>
@@ -1017,6 +1093,12 @@ body {
         </div>
       </div>
 
+      <div class="sint-card">
+        <div class="sint-title">Observaciones</div>
+        <div class="sint-desc">Anotá cualquier aspecto del partido que quieras destacar y que no esté contemplado en los indicadores anteriores.</div>
+        <textarea class="obs-textarea" placeholder="Escribí tus observaciones aquí…"></textarea>
+      </div>
+
     </div>
   </div>
 
@@ -1060,7 +1142,7 @@ function exportarPDF() {
 function resetForm() {
   if (!confirm('¿Limpiar todo el formulario?')) return;
   document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(i => i.checked = false);
-  document.querySelectorAll('input[type="text"], input[type="date"], select').forEach(i => i.value = '');
+  document.querySelectorAll('input[type="text"], input[type="date"], select, textarea').forEach(i => i.value = '');
   updateProgress();
 }
 </script>
