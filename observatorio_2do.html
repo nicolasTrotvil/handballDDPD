@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Observatorio 2do — Handball | IMEF Comunidad</title>
+<style>
+:root {
+  --azul: #0D3B66;
+  --verde: #00A896;
+  --gris-oscuro: #333333;
+  --gris-claro: #F4F4F6;
+  --blanco: #ffffff;
+  --rule: #d0d4da;
+  --verde-soft: #e0f5f3;
+  --azul-soft: #e8f0f8;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  background: var(--gris-claro);
+  color: var(--gris-oscuro);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-bottom: 100px;
+}
+
+/* HEADER INSTITUCIONAL */
+.inst-header {
+  background: var(--azul);
+  color: var(--blanco);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.brand-name { font-size: 20px; font-weight: bold; letter-spacing: 1px; }
+.brand-sub { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.65; margin-top: 3px; }
+.brand-line { width: 32px; height: 3px; background: var(--verde); margin-top: 7px; border-radius: 2px; }
+.inst-meta { text-align: right; font-size: 9px; opacity: 0.6; line-height: 1.8; }
+
+/* TITLE BAND */
+.title-band {
+  background: var(--verde);
+  padding: 13px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.title-band h1 { color: var(--blanco); font-size: 16px; font-weight: bold; letter-spacing: 0.3px; }
+.title-tag { background: rgba(255,255,255,0.2); color: var(--blanco); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; }
+
+/* WRAP */
+.wrap { max-width: 860px; margin: 0 auto; padding: 24px 16px; }
+
+/* DATOS */
+.datos-wrap {
+  background: var(--blanco);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--verde);
+  border-radius: 0 0 6px 6px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+
+.datos-title {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--verde);
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+
+.field-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field.full { grid-column: 1 / -1; }
+
+.field label {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gris-oscuro);
+  font-weight: bold;
+  opacity: 0.6;
+}
+
+.field input, .field select {
+  border: 1.5px solid var(--rule);
+  border-radius: 4px;
+  padding: 9px 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: var(--gris-oscuro);
+  background: var(--gris-claro);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.field input:focus, .field select:focus { border-color: var(--verde); }
+
+/* SELECTOR TIPO */
+.tipo-wrap {
+  background: var(--blanco);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--azul);
+  border-radius: 0 0 6px 6px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+
+.tipo-title {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--azul);
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+
+.tipo-opciones {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tipo-opciones input[type="radio"] { display: none; }
+
+.tipo-btn {
+  flex: 1;
+  min-width: 130px;
+  text-align: center;
+  padding: 12px 16px;
+  border: 1.5px solid var(--rule);
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--gris-oscuro);
+  background: var(--gris-claro);
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.tipo-opciones input[type="radio"]:checked + .tipo-btn {
+  background: var(--azul);
+  color: var(--blanco);
+  border-color: var(--azul);
+}
+
+/* CAMPOS OBSERVACION */
+.campo-wrap {
+  background: var(--blanco);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.campo-hd {
+  padding: 14px 18px;
+  background: var(--gris-claro);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.campo-num {
+  background: var(--verde);
+  color: var(--blanco);
+  font-size: 11px;
+  font-weight: bold;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.campo-titulo {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--azul);
+}
+
+.campo-body {
+  padding: 16px 18px;
+}
+
+.obs-textarea {
+  width: 100%;
+  min-height: 160px;
+  border: 1.5px solid var(--rule);
+  border-radius: 4px;
+  padding: 12px 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: var(--gris-oscuro);
+  background: var(--gris-claro);
+  outline: none;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.obs-textarea:focus { border-color: var(--verde); }
+
+/* PDF BAR */
+.pdf-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--blanco);
+  border-top: 2px solid var(--rule);
+  padding: 12px 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 100;
+}
+
+.btn-pdf {
+  flex: 1;
+  background: var(--azul);
+  color: var(--blanco);
+  border: none;
+  border-radius: 6px;
+  padding: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.2s;
+}
+
+.btn-pdf:hover, .btn-pdf:active { background: var(--verde); }
+
+.btn-reset {
+  background: var(--gris-claro);
+  color: var(--gris-oscuro);
+  border: 1.5px solid var(--rule);
+  border-radius: 6px;
+  padding: 13px 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+/* FOOTER */
+.doc-footer {
+  background: var(--azul);
+  color: rgba(255,255,255,0.55);
+  padding: 14px 24px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* PRINT */
+@media print {
+  .pdf-bar { display: none; }
+  body { background: white; padding-bottom: 0; }
+  .campo-wrap { break-inside: avoid; }
+  .inst-header, .title-band { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .campo-num { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .tipo-opciones input[type="radio"]:checked + .tipo-btn {
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER INSTITUCIONAL -->
+<div class="inst-header">
+  <div>
+    <div class="brand-name">IMEF Comunidad</div>
+    <div class="brand-sub">Instituto Modelo de Educación Física</div>
+    <div class="brand-line"></div>
+  </div>
+  <div class="inst-meta">
+    Medrano 155, Banfield, Buenos Aires<br>
+    Tel: 4202-0665 · imef.informacion@gmail.com<br>
+    Lunes a Viernes · 8 a 21 hs
+  </div>
+</div>
+
+<!-- TITLE BAND -->
+<div class="title-band">
+  <h1>Observatorio — Handball · 2.º Año</h1>
+  <span class="title-tag">Didáctica de las Prácticas Deportivas</span>
+</div>
+
+<div class="wrap">
+
+  <!-- DATOS DEL ESTUDIANTE -->
+  <div class="datos-wrap">
+    <div class="datos-title">Datos del estudiante</div>
+    <div class="field-group">
+      <div class="field"><label>Apellido y nombre</label><input type="text" id="f-nombre" placeholder="Apellido, Nombre"></div>
+      <div class="field"><label>Fecha</label><input type="date" id="f-fecha"></div>
+      <div class="field full"><label>Observador / Docente</label><input type="text" id="f-docente" placeholder="Nombre del observador"></div>
+    </div>
+  </div>
+
+  <!-- TIPO DE OBSERVACIÓN -->
+  <div class="tipo-wrap">
+    <div class="tipo-title">Se observa</div>
+    <div class="tipo-opciones">
+      <input type="radio" name="tipo" id="tipo-partido">
+      <label class="tipo-btn" for="tipo-partido">Partido</label>
+
+      <input type="radio" name="tipo" id="tipo-entrenamiento">
+      <label class="tipo-btn" for="tipo-entrenamiento">Entrenamiento</label>
+
+      <input type="radio" name="tipo" id="tipo-clase">
+      <label class="tipo-btn" for="tipo-clase">Clase</label>
+    </div>
+  </div>
+
+  <!-- CAMPO 1: TÉCNICA -->
+  <div class="campo-wrap">
+    <div class="campo-hd">
+      <div class="campo-num">1</div>
+      <div class="campo-titulo">Técnica</div>
+    </div>
+    <div class="campo-body">
+      <textarea class="obs-textarea" id="campo-tecnica" placeholder="Describí lo que observaste en relación a los gestos técnicos…"></textarea>
+    </div>
+  </div>
+
+  <!-- CAMPO 2: TÁCTICA INDIVIDUAL -->
+  <div class="campo-wrap">
+    <div class="campo-hd">
+      <div class="campo-num">2</div>
+      <div class="campo-titulo">Táctica Individual</div>
+    </div>
+    <div class="campo-body">
+      <textarea class="obs-textarea" id="campo-tactica-ind" placeholder="Describí lo que observaste en relación a las decisiones individuales de cada jugador…"></textarea>
+    </div>
+  </div>
+
+  <!-- CAMPO 3: TÁCTICA COLECTIVA -->
+  <div class="campo-wrap">
+    <div class="campo-hd">
+      <div class="campo-num">3</div>
+      <div class="campo-titulo">Táctica Colectiva</div>
+    </div>
+    <div class="campo-body">
+      <textarea class="obs-textarea" id="campo-tactica-col" placeholder="Describí lo que observaste en relación a la organización y los sistemas del equipo…"></textarea>
+    </div>
+  </div>
+
+  <!-- CAMPO 4: OBSERVACIONES -->
+  <div class="campo-wrap">
+    <div class="campo-hd">
+      <div class="campo-num">4</div>
+      <div class="campo-titulo">Observaciones</div>
+    </div>
+    <div class="campo-body">
+      <textarea class="obs-textarea" id="campo-obs" placeholder="Cualquier otro aspecto que quieras destacar…"></textarea>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <span>IMEF Comunidad · Instituto Modelo de Educación Física</span>
+  <span>Medrano 155, Banfield, Buenos Aires · Tel: 4202-0665 · imef.informacion@gmail.com</span>
+</div>
+
+<!-- PDF BAR -->
+<div class="pdf-bar">
+  <button class="btn-pdf" onclick="exportarPDF()">Exportar PDF</button>
+  <button class="btn-reset" onclick="resetForm()">Limpiar</button>
+</div>
+
+<script>
+function exportarPDF() {
+  window.print();
+}
+
+function resetForm() {
+  if (!confirm('¿Limpiar todo el formulario?')) return;
+  document.querySelectorAll('input[type="radio"]').forEach(i => i.checked = false);
+  document.querySelectorAll('input[type="text"], input[type="date"], textarea').forEach(i => i.value = '');
+}
+</script>
+</body>
+</html>
