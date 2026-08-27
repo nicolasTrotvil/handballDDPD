@@ -3,109 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IMEF Comunidad — Handball & Balonmano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Zen+Maru+Gothic:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>IMEF · Handball — Recursos Didácticos</title>
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: Arial, Helvetica, sans-serif; background: #F4F4F6; min-height: 100vh; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --accent:    #002B77;
+    --ink:       #0D1B3E;
+    --text:      #0D1B3E;
+    --text-soft: #556080;
+    --soft:      #CCDAE8;
+    --bg:        #EDF0F8;
+    --bg-panel:  #FFFFFF;
+  }
+  body {
+    font-family: 'Zen Maru Gothic', system-ui, sans-serif;
+    background: var(--bg);
+    background-image: radial-gradient(circle, rgba(13,27,62,0.06) 1px, transparent 1.2px);
+    background-size: 16px 16px;
+    min-height: 100vh;
+    color: var(--text);
+  }
 
   .header {
-    background: #0D3B66;
-    color: white;
-    padding: 24px 28px;
-    border-bottom: 3px solid #00A896;
+    background: var(--bg-panel);
+    border-bottom: 3px solid var(--ink);
+    padding: 20px 28px;
+    position: relative;
+    overflow: hidden;
   }
-  .brand { font-size: 22px; font-weight: bold; letter-spacing: 1px; margin-bottom: 4px; }
-  .brand span { color: #00A896; }
-  .brand-sub { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; }
+  .header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(115deg, rgba(0,43,119,0.06) 0px, rgba(0,43,119,0.06) 1px, transparent 1px, transparent 12px);
+    mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent);
+  }
+  .brand {
+    font-family: 'Bungee', system-ui;
+    font-size: 1.25rem; font-weight: 400;
+    color: var(--accent); letter-spacing: .05em;
+    position: relative;
+  }
+  .brand-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .62rem; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--text-soft);
+    margin-top: 4px; position: relative;
+  }
 
-  .wrap { max-width: 680px; margin: 0 auto; padding: 32px 20px 60px; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 32px 20px 60px; }
 
   .section-label {
-    font-size: 9px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #00A896;
-    font-weight: bold;
-    margin-bottom: 12px;
-    margin-top: 28px;
-    padding-left: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .62rem; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 10px; margin-top: 32px;
+    border-left: 3px solid var(--accent);
+    padding-left: 8px;
   }
 
-  a {
+  .card {
     display: block;
-    background: #0D3B66;
-    color: white;
+    background: var(--bg-panel);
+    color: var(--text);
     text-decoration: none;
-    padding: 18px 20px;
-    border-radius: 8px;
+    padding: 16px 20px;
+    border: 2px solid var(--ink);
     margin-bottom: 10px;
-    font-size: 15px;
-    font-weight: bold;
-    border-left: 4px solid #00A896;
-    transition: background 0.15s;
+    font-size: .95rem;
+    font-weight: 700;
+    transition: transform .12s, box-shadow .12s;
+    box-shadow: 3px 3px 0 var(--ink);
+    position: relative;
   }
-
-  a span {
+  .card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 4px; background: var(--accent);
+  }
+  .card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--ink);
+    color: var(--text);
+  }
+  .card-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .58rem; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding: 2px 8px;
+    margin-bottom: 6px;
+    border: 1.5px solid var(--ink);
+  }
+  .card-badge.filled  { background: var(--accent); color: white; border-color: var(--accent); }
+  .card-badge.outline { background: transparent; color: var(--accent); }
+  .card span {
     display: block;
-    font-size: 11px;
-    opacity: 0.65;
-    font-weight: normal;
-    margin-top: 4px;
-    letter-spacing: 0.3px;
+    font-size: .75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-soft); font-weight: 400;
+    margin-top: 5px; letter-spacing: .02em;
   }
-
-  a:hover { background: #00A896; }
 
   .footer {
-    margin-top: 48px;
-    padding-top: 16px;
-    border-top: 1px solid #d0d4da;
-    font-size: 10px;
-    color: #999;
-    letter-spacing: 1px;
-    text-align: center;
-    line-height: 1.8;
+    margin-top: 48px; padding-top: 16px;
+    border-top: 2px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .6rem; color: var(--text-soft);
+    letter-spacing: .07em; text-align: center; line-height: 1.9;
   }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="brand">IMEF <span>Comunidad</span></div>
+  <div class="brand">IMEF · Handball</div>
   <div class="brand-sub">Instituto Modelo de Educación Física · Recursos Didácticos Digitales</div>
 </div>
 
 <div class="wrap">
 
-  <div class="section-label">Handball · Didáctica 4to año Profesorado</div>
+  <div class="section-label">Instrumentos de Observación — Handball</div>
 
-  <a href="instrumento_observacion_handball.html">
-    Instrumento de Observación — Handball
-    <span>Para completar en clase y en partidos autónomos · Exportable a PDF</span>
+  <a class="card" href="observatorio_2do.html">
+    <div class="card-badge outline">Simple</div>
+    Instrumento de Observación
+    <span>Técnica · Táctica Individual · Táctica Colectiva · Exportable a PDF</span>
   </a>
 
-  <div class="section-label">Handball · Didáctica 2do año Profesorado</div>
-
-  <a href="observatorio_2do.html">
-    Observatorio — Handball · 2.º Año
-    <span>Partido · Entrenamiento · Clase · Técnica, Táctica Individual, Táctica Colectiva · Exportable a PDF</span>
+  <a class="card" href="instrumento_observacion_handball.html">
+    <div class="card-badge filled">Completo</div>
+    Instrumento de Observación
+    <span>Análisis integral del juego · Múltiples dimensiones · Exportable a PDF</span>
   </a>
 
-  <div class="section-label">Balonmano · Herramientas de Mesa de Control y Arbitraje</div>
+  <div class="section-label">Estadística</div>
 
-  <a href="cronometro-mesa.html">
+  <a class="card" href="estadistica-lanzamientos.html">
+    Planilla de Estadística
+    <span>Registro de lanzamientos por zona · 7 metros · Contraataque · Zona · Exportable a PDF</span>
+  </a>
+
+  <div class="section-label">Mesa de Control y Arbitraje — Balonmano</div>
+
+  <a class="card" href="cronometro-mesa.html">
     Mesa de Control — Cronómetro
     <span>Cronómetro descendente · Exclusiones de 2 min · Hasta 7 simultáneas · Para tablet o proyector</span>
   </a>
 
-  <a href="planilla-online.html">
+  <a class="card" href="planilla-online.html">
     Planilla Digital — Balonmano
     <span>Registro completo de partido · Jugadores · Marcador · Sanciones · Guardar y exportar PDF</span>
   </a>
 
   <div class="footer">
-    IMEF Comunidad · Instituto Modelo de Educación Física<br>
-    Medrano 155, Banfield, Buenos Aires · Tel: 4202-0665 · imef.informacion@gmail.com
+    IMEF · Instituto Modelo de Educación Física<br>
+    Medrano 155, Banfield, Buenos Aires · 4202-0665 · imef.informacion@gmail.com
   </div>
 
 </div>
