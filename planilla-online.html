@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;600;700&family=Montserrat:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;600;700&family=Montserrat:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <title>Planilla Digital — Balonmano</title>
 <style>
 :root {
@@ -14,23 +14,23 @@
   --imef-rojo:    #CC1B2C;
   --imef-purpura: #7920A2;
   --imef-naranja: #C86500;
-  --accent:       #1A57B0;
+  --accent:       #B0121F;
   --accent2:      #278035;
   --danger:       #CC1B2C;
-  --ink:          #1A1A2E;
-  --text:         #1A1A2E;
-  --text-soft:    #556070;
-  --soft:         #C8D4E4;
-  --bg:           #EEF1F6;
+  --ink:          #142A4D;
+  --text:         #142A4D;
+  --text-soft:    #5C6C82;
+  --soft:         #D7DCE4;
+  --bg:           #F1F3F6;
   --bg-panel:     #FFFFFF;
-  --bg-raised:    #F7F9FC;
+  --bg-raised:    #FAFBFC;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   background: var(--bg);
-  background-image: radial-gradient(circle, rgba(26,26,46,0.035) 1px, transparent 1.2px);
+  background-image: radial-gradient(circle, rgba(20,42,77,0.035) 1px, transparent 1.2px);
   background-size: 16px 16px;
   color: var(--text);
   font-family: 'Montserrat', sans-serif;
@@ -49,7 +49,7 @@ body {
 .header::before {
   content: '';
   position: absolute; inset: 0;
-  background: repeating-linear-gradient(115deg, rgba(26,87,176,0.06) 0px, rgba(26,87,176,0.06) 1px, transparent 1px, transparent 12px);
+  background: repeating-linear-gradient(115deg, rgba(20,42,77,0.04) 0px, rgba(20,42,77,0.04) 1px, transparent 1px, transparent 12px);
   mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent);
   pointer-events: none;
 }
@@ -60,7 +60,7 @@ body {
 }
 .brand span { color: var(--accent2); }
 .header-tag {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
   color: var(--text-soft); position: relative;
 }
@@ -71,7 +71,7 @@ body {
   background: var(--bg-panel);
   border: 2px solid var(--ink);
   margin-bottom: 16px;
-  box-shadow: 0 2px 12px rgba(26,26,46,0.09);
+  box-shadow: 0 2px 12px rgba(20,42,77,0.09);
 }
 .sec-head {
   background: var(--accent);
@@ -90,12 +90,12 @@ body {
 
 .field { display: flex; flex-direction: column; gap: 4px; }
 .field label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: .6rem; text-transform: uppercase; letter-spacing: .1em;
   color: var(--accent2); font-weight: 500;
 }
 .field input, .field select {
-  border: 2px solid var(--ink); border-radius: 0;
+  border: 2px solid var(--ink); border-radius: 2px;
   padding: 8px 10px;
   font-family: 'Montserrat', sans-serif; font-size: 13px;
   color: var(--text); background: var(--bg-raised);
@@ -114,16 +114,16 @@ body {
 .marcador-tiempos { display: flex; flex-direction: column; gap: 8px; }
 .tiempo-row { display: flex; align-items: center; gap: 10px; }
 .tiempo-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: .6rem; color: var(--text-soft); width: 90px; text-align: right;
 }
 .tiempo-val { display: flex; align-items: center; gap: 6px; }
 .marcador-input {
   width: 64px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: 28px; font-weight: 400;
   text-align: center;
-  border: 2px solid var(--ink); border-radius: 0;
+  border: 2px solid var(--ink); border-radius: 2px;
   padding: 4px;
   color: var(--accent); background: var(--bg-raised);
   outline: none; min-height: 50px;
@@ -131,7 +131,7 @@ body {
 .marcador-input:focus { border-color: var(--accent); }
 .marcador-input.final { font-size: 36px; border-color: var(--accent); }
 .marcador-sep {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: 32px; font-weight: 400; color: var(--soft); margin-top: 16px;
 }
 
@@ -139,7 +139,7 @@ body {
 .tabla-jugadores th {
   background: var(--ink); color: white;
   padding: 8px 6px; text-align: center;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
 }
 .tabla-jugadores th.left { text-align: left; padding-left: 10px; }
@@ -152,7 +152,7 @@ body {
 .tabla-jugadores tr:hover td { background: var(--soft); }
 .tabla-jugadores input[type="text"],
 .tabla-jugadores input[type="number"] {
-  border: 1.5px solid var(--ink); border-radius: 0;
+  border: 1.5px solid var(--ink); border-radius: 2px;
   padding: 4px 6px;
   font-family: 'Montserrat', sans-serif; font-size: 12px;
   color: var(--text); background: var(--bg-raised);
@@ -168,10 +168,10 @@ body {
 
 .counter-wrap { display: flex; align-items: center; justify-content: center; gap: 4px; }
 .cnt-btn {
-  width: 24px; height: 24px; border-radius: 0;
+  width: 24px; height: 24px; border-radius: 2px;
   border: 1.5px solid var(--ink);
   background: var(--bg-raised);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: 14px; font-weight: 700;
   cursor: pointer; display: flex; align-items: center; justify-content: center;
   color: var(--text); line-height: 1;
@@ -179,7 +179,7 @@ body {
 }
 .cnt-btn:hover { background: var(--accent2); color: white; border-color: var(--accent2); }
 .cnt-val {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: 14px; font-weight: 700; min-width: 20px; text-align: center; color: var(--accent);
 }
 
@@ -187,11 +187,11 @@ body {
 
 .registro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-.reg-card { border: 2px solid var(--ink); box-shadow: 0 2px 8px rgba(26,26,46,0.08); }
+.reg-card { border: 2px solid var(--ink); box-shadow: 0 2px 8px rgba(20,42,77,0.08); }
 .reg-card-head {
   background: var(--bg-raised);
   padding: 8px 12px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: .58rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
   color: var(--accent); border-bottom: 2px solid var(--ink);
 }
@@ -201,21 +201,21 @@ body {
 .reg-label { font-family: 'Montserrat', sans-serif; font-size: 13px; color: var(--text); }
 .reg-controls { display: flex; align-items: center; gap: 6px; }
 .reg-val {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: 18px; font-weight: 700; color: var(--accent); min-width: 30px; text-align: center;
 }
 
 .timeout-used { display: flex; gap: 6px; flex-wrap: wrap; }
 .timeout-dot {
   width: 18px; height: 18px;
-  border-radius: 0; border: 2px solid var(--ink);
+  border-radius: 2px; border: 2px solid var(--ink);
   background: var(--bg-raised); cursor: pointer; transition: background .12s;
 }
 .timeout-dot.usado { background: var(--accent); border-color: var(--accent); }
 
 .obs-textarea {
   width: 100%; min-height: 80px;
-  border: 2px solid var(--ink); border-radius: 0;
+  border: 2px solid var(--ink); border-radius: 2px;
   padding: 10px;
   font-family: 'Montserrat', sans-serif; font-size: 13px;
   color: var(--text); background: var(--bg-raised);
@@ -234,13 +234,13 @@ body {
 .act-btn {
   font-family: 'Cabin Condensed', sans-serif;
   font-size: .9rem; font-weight: 700;
-  padding: 10px 18px; border-radius: 0;
+  padding: 10px 18px; border-radius: 2px;
   border: 2px solid var(--ink);
   cursor: pointer; letter-spacing: 0.5px;
   min-height: 44px;
-  box-shadow: 0 2px 8px rgba(26,26,46,0.08); transition: transform .12s, box-shadow .12s;
+  box-shadow: 0 2px 8px rgba(20,42,77,0.08); transition: transform .12s, box-shadow .12s;
 }
-.act-btn:hover { transform: translateY(-2px); box-shadow: 0 2px 12px rgba(26,26,46,0.09); }
+.act-btn:hover { transform: translateY(-2px); box-shadow: 0 2px 12px rgba(20,42,77,0.09); }
 .act-btn:active { transform: translateY(1px); box-shadow: 1px 1px 0 var(--ink); }
 .btn-agregar  { background: var(--accent2); color: white; }
 .btn-limpiar  { background: var(--bg-raised); color: var(--text-soft); }
@@ -268,12 +268,12 @@ body {
 /* Header — borde suave, sombra difusa */
 .header, .inst-header {
   border-bottom: 1px solid var(--soft) !important;
-  box-shadow: 0 2px 10px rgba(26,26,46,0.07) !important;
+  box-shadow: 0 2px 10px rgba(20,42,77,0.07) !important;
 }
 
 /* Body — dot grid apenas visible */
 body {
-  background-image: radial-gradient(circle, rgba(26,26,46,0.035) 1px, transparent 1.2px) !important;
+  background-image: radial-gradient(circle, rgba(20,42,77,0.035) 1px, transparent 1.2px) !important;
 }
 
 /* Cards y paneles principales */
@@ -322,6 +322,21 @@ body {
 /* Exclusión finalizada badge */
 .excl-badge-fin { border-radius: 6px !important; }
 
+
+/* ── Sistema monocromo con acento único ── */
+.header::before, .inst-header::before {
+  inset: unset;
+  display: block;
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--imef-rojo) 20%, var(--imef-purpura) 20% 40%, var(--imef-verde) 40% 60%, var(--imef-azul) 60% 80%, var(--imef-naranja) 80%);
+  mask-image: none;
+}
+.header, .inst-header {
+  border-bottom: 1px solid var(--soft) !important;
+  box-shadow: 0 1px 4px rgba(20,42,77,0.06) !important;
+}
 </style>
 </head>
 <body>
@@ -408,7 +423,7 @@ body {
   <div class="sec">
     <div class="sec-head">
       <div class="sec-title" id="head-eqA">Equipo A — Jugadores</div>
-      <button onclick="agregarJugador('A')" style="background:var(--accent2);color:white;border:2px solid var(--ink);border-radius:0;padding:5px 12px;font-size:11px;font-weight:bold;cursor:pointer;box-shadow:2px 2px 0 var(--ink);">+ Jugador</button>
+      <button onclick="agregarJugador('A')" style="background:var(--accent2);color:white;border:2px solid var(--ink);border-radius: 2px;padding:5px 12px;font-size:11px;font-weight:bold;cursor:pointer;box-shadow:2px 2px 0 var(--ink);">+ Jugador</button>
     </div>
     <div class="sec-body" style="padding:0;overflow-x:auto;">
       <table class="tabla-jugadores">
@@ -432,7 +447,7 @@ body {
   <div class="sec">
     <div class="sec-head">
       <div class="sec-title" id="head-eqB">Equipo B — Jugadores</div>
-      <button onclick="agregarJugador('B')" style="background:var(--accent2);color:white;border:2px solid var(--ink);border-radius:0;padding:5px 12px;font-size:11px;font-weight:bold;cursor:pointer;box-shadow:2px 2px 0 var(--ink);">+ Jugador</button>
+      <button onclick="agregarJugador('B')" style="background:var(--accent2);color:white;border:2px solid var(--ink);border-radius: 2px;padding:5px 12px;font-size:11px;font-weight:bold;cursor:pointer;box-shadow:2px 2px 0 var(--ink);">+ Jugador</button>
     </div>
     <div class="sec-body" style="padding:0;overflow-x:auto;">
       <table class="tabla-jugadores">
