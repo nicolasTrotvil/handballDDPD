@@ -30,7 +30,7 @@
 
 body {
   background: var(--bg);
-  background-image: radial-gradient(circle, rgba(26,26,46,0.06) 1px, transparent 1.2px);
+  background-image: radial-gradient(circle, rgba(26,26,46,0.035) 1px, transparent 1.2px);
   background-size: 16px 16px;
   color: var(--text);
   font-family: 'Montserrat', sans-serif;
@@ -75,7 +75,7 @@ body {
   border: 2px solid var(--ink);
   padding: 16px 20px; margin-bottom: 20px;
   display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 0 2px 12px rgba(26,26,46,0.09);
 }
 .duracion-label {
   font-family: 'JetBrains Mono', monospace;
@@ -89,9 +89,9 @@ body {
   padding: 8px 16px;
   font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
   cursor: pointer; min-height: 44px;
-  box-shadow: 3px 3px 0 var(--ink); transition: transform .12s, box-shadow .12s;
+  box-shadow: 0 2px 8px rgba(26,26,46,0.08); transition: transform .12s, box-shadow .12s;
 }
-.dur-btn:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--ink); }
+.dur-btn:hover { transform: translateY(-2px); box-shadow: 0 2px 12px rgba(26,26,46,0.09); }
 .dur-btn.active { background: var(--accent); border-color: var(--ink); color: white; }
 
 .custom-wrap { display: flex; align-items: center; gap: 8px; }
@@ -109,7 +109,7 @@ body {
   background: var(--bg-panel);
   border: 2px solid var(--ink);
   padding: 32px 24px; text-align: center; margin-bottom: 20px;
-  box-shadow: 6px 6px 0 var(--ink);
+  box-shadow: 0 4px 20px rgba(26,26,46,0.11);
   border-top: 5px solid var(--accent);
 }
 .crono-label {
@@ -138,10 +138,10 @@ body {
   border-radius: 0; border: 2px solid var(--ink);
   cursor: pointer; letter-spacing: 0.5px;
   min-height: 48px; min-width: 120px;
-  box-shadow: 4px 4px 0 var(--ink); transition: transform .12s, box-shadow .12s;
+  box-shadow: 0 2px 12px rgba(26,26,46,0.09); transition: transform .12s, box-shadow .12s;
 }
-.ctrl-btn:hover { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--ink); }
-.ctrl-btn:active { transform: translate(1px,1px); box-shadow: 2px 2px 0 var(--ink); }
+.ctrl-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(26,26,46,0.11); }
+.ctrl-btn:active { transform: translateY(1px); box-shadow: 0 1px 6px rgba(26,26,46,0.07); }
 .btn-iniciar  { background: var(--accent2); color: white; }
 .btn-pausar   { background: var(--imef-naranja); color: white; }
 .btn-reanudar { background: var(--accent2); color: white; }
@@ -168,9 +168,9 @@ body {
   background: var(--bg-panel);
   border: 2px solid var(--ink);
   padding: 14px 16px; position: relative;
-  box-shadow: 4px 4px 0 var(--ink); transition: opacity 0.3s;
+  box-shadow: 0 2px 12px rgba(26,26,46,0.09); transition: opacity 0.3s;
 }
-.excl-card.finalizada { opacity: 0.45; box-shadow: 2px 2px 0 var(--ink); }
+.excl-card.finalizada { opacity: 0.45; box-shadow: 0 1px 6px rgba(26,26,46,0.07); }
 .excl-card.equipo-a { border-left: 5px solid var(--accent2); }
 .excl-card.equipo-b { border-left: 5px solid var(--imef-purpura); }
 
@@ -183,9 +183,9 @@ body {
   border: 2px solid var(--ink);
   background: var(--bg-raised); color: var(--text-soft);
   cursor: pointer; min-height: 36px;
-  box-shadow: 2px 2px 0 var(--ink); transition: transform .12s, box-shadow .12s;
+  box-shadow: 0 1px 6px rgba(26,26,46,0.07); transition: transform .12s, box-shadow .12s;
 }
-.excl-eq-btn:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink); }
+.excl-eq-btn:hover { transform: translateY(-2px); box-shadow: 0 2px 8px rgba(26,26,46,0.08); }
 .excl-eq-btn.active-a { background: var(--accent2); border-color: var(--ink); color: white; }
 .excl-eq-btn.active-b { background: var(--imef-purpura); border-color: var(--ink); color: white; }
 
@@ -253,6 +253,69 @@ body {
   .btn-2min { font-size: 1rem; }
   .excl-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Identidad IMEF: estilo limpio-profesional ── */
+
+/* Stripe del header: oculto */
+.header::before, .inst-header::before { display: none; }
+
+/* Header — borde suave, sombra difusa */
+.header, .inst-header {
+  border-bottom: 1px solid var(--soft) !important;
+  box-shadow: 0 2px 10px rgba(26,26,46,0.07) !important;
+}
+
+/* Body — dot grid apenas visible */
+body {
+  background-image: radial-gradient(circle, rgba(26,26,46,0.035) 1px, transparent 1.2px) !important;
+}
+
+/* Cards y paneles principales */
+.datos-wrap, .tipo-wrap, .campo-wrap, .sec, .reg-card,
+.excl-card, .duracion-wrap, .dim, .leyenda, .card,
+.sint-card, .nota-exp { border-radius: 10px !important; }
+
+/* Cards con overflow hidden para respetar radius */
+.campo-wrap, .sec, .dim, .reg-card { overflow: hidden !important; }
+
+/* Cronómetro — display en azul institucional, contenedor elegante */
+.crono-wrap { border-radius: 16px !important; overflow: hidden !important; }
+.crono-display { color: var(--accent) !important; letter-spacing: 8px !important; }
+.crono-display.warning { color: var(--imef-naranja) !important; }
+.crono-display.danger  { color: var(--danger) !important; }
+
+/* Badges de número: circulares */
+.campo-num, .dim-num { border-radius: 50% !important; }
+
+/* Botones principales */
+.btn-pdf, .btn-reset, .act-btn, .ctrl-btn, .dur-btn,
+.tipo-btn, .tab { border-radius: 6px !important; }
+
+/* Botones pequeños */
+.excl-eq-btn, .cnt-btn { border-radius: 4px !important; }
+
+/* Inputs y selects */
+.field input, .field select, .obs-textarea, .marcador-input,
+.custom-input, .excl-num-input { border-radius: 6px !important; }
+
+/* Checkboxes — levemente redondeados */
+.check-box, .vacio-check { border-radius: 4px !important; }
+
+/* Escala de valoración */
+.escala { border-radius: 6px !important; overflow: hidden !important; }
+
+/* Badges y etiquetas */
+.card-badge, .nivel-badge, .lbadge, .title-tag { border-radius: 4px !important; }
+
+/* Timeout dot — circular */
+.timeout-dot { border-radius: 50% !important; }
+
+/* Excl card — sin overflow para no cortar el badge */
+.excl-card { overflow: visible !important; }
+
+/* Exclusión finalizada badge */
+.excl-badge-fin { border-radius: 6px !important; }
+
 </style>
 </head>
 <body>
