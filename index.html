@@ -5,23 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Zen+Maru+Gothic:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;600;700&family=Montserrat:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <title>IMEF · Handball — Recursos Didácticos</title>
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --accent:    #002B77;
-    --ink:       #0D1B3E;
-    --text:      #0D1B3E;
-    --text-soft: #556080;
-    --soft:      #CCDAE8;
-    --bg:        #EDF0F8;
-    --bg-panel:  #FFFFFF;
+    --imef-azul:    #1A57B0;
+    --imef-verde:   #278035;
+    --imef-rojo:    #CC1B2C;
+    --imef-purpura: #7920A2;
+    --imef-naranja: #C86500;
+    --accent:       #1A57B0;
+    --accent2:      #278035;
+    --danger:       #CC1B2C;
+    --ink:          #1A1A2E;
+    --text:         #1A1A2E;
+    --text-soft:    #556070;
+    --soft:         #C8D4E4;
+    --bg:           #EEF1F6;
+    --bg-panel:     #FFFFFF;
+    --bg-raised:    #F7F9FC;
   }
   body {
-    font-family: 'Zen Maru Gothic', system-ui, sans-serif;
+    font-family: 'Montserrat', system-ui, sans-serif;
     background: var(--bg);
-    background-image: radial-gradient(circle, rgba(13,27,62,0.06) 1px, transparent 1.2px);
+    background-image: radial-gradient(circle, rgba(26,26,46,0.06) 1px, transparent 1.2px);
     background-size: 16px 16px;
     min-height: 100vh;
     color: var(--text);
@@ -37,12 +45,12 @@
   .header::before {
     content: '';
     position: absolute; inset: 0;
-    background: repeating-linear-gradient(115deg, rgba(0,43,119,0.06) 0px, rgba(0,43,119,0.06) 1px, transparent 1px, transparent 12px);
+    background: repeating-linear-gradient(115deg, rgba(26,87,176,0.06) 0px, rgba(26,87,176,0.06) 1px, transparent 1px, transparent 12px);
     mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent);
   }
   .brand {
-    font-family: 'Bungee', system-ui;
-    font-size: 1.25rem; font-weight: 400;
+    font-family: 'Cabin Condensed', system-ui;
+    font-size: 1.25rem; font-weight: 700;
     color: var(--accent); letter-spacing: .05em;
     position: relative;
   }
