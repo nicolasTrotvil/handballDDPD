@@ -5,27 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Zen+Maru+Gothic:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;600;700&family=Montserrat:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <title>Estadística de Lanzamientos</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --accent:    #002B77;
-      --accent2:   #5A8FD6;
-      --ink:       #0D1B3E;
-      --text:      #0D1B3E;
-      --text-soft: #556080;
-      --soft:      #CCDAE8;
-      --bg:        #EDF0F8;
-      --bg-panel:  #FFFFFF;
-      --gol:    #1a7340;
-      --fallo:  #BC002D;
-      --parada: #c27300;
+      --imef-azul:    #1A57B0;
+      --imef-verde:   #278035;
+      --imef-rojo:    #CC1B2C;
+      --imef-purpura: #7920A2;
+      --imef-naranja: #C86500;
+      --accent:       #1A57B0;
+      --accent2:      #278035;
+      --danger:       #CC1B2C;
+      --ink:          #1A1A2E;
+      --text:         #1A1A2E;
+      --text-soft:    #556070;
+      --soft:         #C8D4E4;
+      --bg:           #EEF1F6;
+      --bg-panel:     #FFFFFF;
+      --bg-raised:    #F7F9FC;
+      --gol:    #278035;
+      --fallo:  #CC1B2C;
+      --parada: #C86500;
     }
     body {
-      font-family: 'Zen Maru Gothic', system-ui, sans-serif;
+      font-family: 'Montserrat', system-ui, sans-serif;
       background: var(--bg);
-      background-image: radial-gradient(circle, rgba(13,27,62,0.06) 1px, transparent 1.2px);
+      background-image: radial-gradient(circle, rgba(26,26,46,0.06) 1px, transparent 1.2px);
       background-size: 16px 16px;
       min-height: 100vh; padding-bottom: 32px; color: var(--text);
     }
@@ -37,11 +44,11 @@
     }
     .encabezado::before {
       content: ''; position: absolute; inset: 0;
-      background: repeating-linear-gradient(115deg, rgba(0,43,119,0.06) 0px, rgba(0,43,119,0.06) 1px, transparent 1px, transparent 12px);
+      background: repeating-linear-gradient(115deg, rgba(26,87,176,0.06) 0px, rgba(26,87,176,0.06) 1px, transparent 1px, transparent 12px);
       mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent);
     }
     .encabezado h1 {
-      font-family: 'Bungee', system-ui; font-size: 1rem; font-weight: 400;
+      font-family: 'Cabin Condensed', system-ui; font-size: 1rem; font-weight: 400;
       text-transform: uppercase; letter-spacing: .08em; color: var(--accent); position: relative;
     }
     .encabezado small { font-size: .72rem; opacity: .55; position: relative; }
@@ -56,7 +63,7 @@
     .campo input, .campo select {
       border: 2px solid var(--ink); border-radius: 0; padding: 5px 9px;
       font-size: .88rem; color: var(--text); font-weight: 600;
-      font-family: 'Zen Maru Gothic', system-ui;
+      font-family: 'Montserrat', system-ui;
     }
     .campo input:focus, .campo select:focus { outline: none; border-color: var(--accent); }
     .campo-eq input { width: 140px; }
@@ -81,7 +88,7 @@
       flex: 1; padding: 9px 12px; border: 2px solid var(--ink); border-radius: 0;
       background: var(--bg-panel); color: var(--text); font-weight: 700; font-size: .85rem;
       cursor: pointer; text-align: center; transition: transform .12s, box-shadow .12s;
-      font-family: 'Zen Maru Gothic', system-ui;
+      font-family: 'Montserrat', system-ui;
     }
     .tab.activo { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 3px 3px 0 var(--ink); }
     .tab:hover:not(.activo) { background: var(--soft); transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink); }
@@ -111,25 +118,25 @@
 
     /* ── Zonas SVG ── */
     .gz {
-      fill: transparent; stroke: rgba(188,0,45,.4); stroke-width: 1.5; cursor: pointer;
+      fill: transparent; stroke: rgba(204,27,44,.4); stroke-width: 1.5; cursor: pointer;
       transition: fill .1s;
     }
-    .gz:hover { fill: rgba(188,0,45,.2); stroke: rgba(188,0,45,.8); stroke-width: 2; }
-    .gz.sel   { fill: rgba(188,0,45,.55); stroke: rgba(188,0,45,1); stroke-width: 3; }
+    .gz:hover { fill: rgba(204,27,44,.2); stroke: rgba(204,27,44,.8); stroke-width: 2; }
+    .gz.sel   { fill: rgba(204,27,44,.55); stroke: rgba(204,27,44,1); stroke-width: 3; }
 
     .cz {
-      fill: transparent; stroke: rgba(0,43,119,0); stroke-width: 2; cursor: pointer;
+      fill: transparent; stroke: rgba(26,87,176,0); stroke-width: 2; cursor: pointer;
       transition: fill .1s;
     }
-    .cz:hover { fill: rgba(0,43,119,.15); stroke: rgba(0,43,119,.5); }
-    .cz.sel   { fill: rgba(0,43,119,.38); stroke: rgba(0,43,119,.9); stroke-width: 3; }
+    .cz:hover { fill: rgba(26,87,176,.15); stroke: rgba(26,87,176,.5); }
+    .cz.sel   { fill: rgba(26,87,176,.38); stroke: rgba(26,87,176,.9); stroke-width: 3; }
 
     .zona-label {
-      font-size: 22px; font-weight: 900; fill: rgba(13,27,62,.6);
+      font-size: 22px; font-weight: 900; fill: rgba(26,26,46,.6);
       text-anchor: middle; dominant-baseline: middle; pointer-events: none;
       font-family: 'JetBrains Mono', monospace;
     }
-    text[id^="gzl-"] { fill: rgba(188,0,45,.85); }
+    text[id^="gzl-"] { fill: rgba(204,27,44,.85); }
 
     .gz-lbl {
       font-size: 28px; font-weight: 900; fill: white;
@@ -152,7 +159,7 @@
       padding: 10px 4px; border: 2px solid; border-radius: 0;
       cursor: pointer; font-weight: 700; font-size: .88rem; background: var(--bg-panel);
       transition: transform .12s, box-shadow .12s; text-align: center;
-      font-family: 'Zen Maru Gothic', system-ui;
+      font-family: 'Montserrat', system-ui;
     }
     .rb.gol    { border-color: var(--gol);    color: var(--gol); }
     .rb.fallo  { border-color: var(--fallo);  color: var(--fallo); }
@@ -175,7 +182,7 @@
       font-size: 1.05rem; font-weight: 400; cursor: pointer;
       letter-spacing: .05em; text-transform: uppercase;
       transition: transform .12s, box-shadow .12s;
-      font-family: 'Bungee', system-ui;
+      font-family: 'Cabin Condensed', system-ui;
     }
     .btn-reg:disabled { background: #bbb; border-color: #bbb; cursor: not-allowed; box-shadow: none; }
     .btn-reg:not(:disabled):hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--ink); }
@@ -189,7 +196,7 @@
     }
     .stats-titulo {
       background: var(--accent); color: white; padding: 8px 14px;
-      font-family: 'Bungee', system-ui;
+      font-family: 'Cabin Condensed', system-ui;
       font-size: .82rem; font-weight: 400; letter-spacing: .07em; text-transform: uppercase;
     }
     .stats-body { padding: 12px; }
