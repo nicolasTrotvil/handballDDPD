@@ -30,7 +30,7 @@
 
 body {
   background: var(--bg);
-  background-image: radial-gradient(circle, rgba(26,26,46,0.06) 1px, transparent 1.2px);
+  background-image: radial-gradient(circle, rgba(26,26,46,0.035) 1px, transparent 1.2px);
   background-size: 16px 16px;
   color: var(--text);
   font-family: 'Montserrat', sans-serif;
@@ -109,7 +109,7 @@ body {
   border-top: 4px solid var(--accent);
   padding: 18px 20px;
   margin-bottom: 16px;
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 0 2px 12px rgba(26,26,46,0.09);
 }
 
 .datos-title {
@@ -164,7 +164,7 @@ body {
   border-top: 4px solid var(--ink);
   padding: 18px 20px;
   margin-bottom: 16px;
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 0 2px 12px rgba(26,26,46,0.09);
 }
 
 .tipo-title {
@@ -198,19 +198,19 @@ body {
   background: var(--bg-raised);
   transition: transform .12s, box-shadow .12s;
   user-select: none;
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 0 2px 8px rgba(26,26,46,0.08);
 }
-.tipo-btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
+.tipo-btn:hover { transform: translateY(-2px); box-shadow: 0 2px 12px rgba(26,26,46,0.09); }
 .tipo-opciones input[type="radio"]:checked + .tipo-btn {
   background: var(--accent); color: white;
-  border-color: var(--ink); box-shadow: 3px 3px 0 var(--ink);
+  border-color: var(--ink); box-shadow: 0 2px 8px rgba(26,26,46,0.08);
 }
 
 .campo-wrap {
   background: var(--bg-panel);
   border: 2px solid var(--ink);
   margin-bottom: 12px;
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 0 2px 12px rgba(26,26,46,0.09);
 }
 
 .campo-hd {
@@ -286,12 +286,12 @@ body {
   cursor: pointer;
   letter-spacing: 0.5px;
   min-height: 44px;
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 0 2px 8px rgba(26,26,46,0.08);
   transition: transform .12s, box-shadow .12s;
 }
 .btn-pdf:hover, .btn-pdf:active {
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 var(--ink);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 12px rgba(26,26,46,0.09);
 }
 
 .btn-reset {
@@ -305,10 +305,10 @@ body {
   font-weight: 700;
   cursor: pointer;
   min-height: 44px;
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 0 2px 8px rgba(26,26,46,0.08);
   transition: transform .12s, box-shadow .12s;
 }
-.btn-reset:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
+.btn-reset:hover { transform: translateY(-2px); box-shadow: 0 2px 12px rgba(26,26,46,0.09); }
 
 .doc-footer {
   background: var(--bg-raised);
@@ -339,6 +339,69 @@ body {
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
 }
+
+/* ── Identidad IMEF: estilo limpio-profesional ── */
+
+/* Stripe del header: oculto */
+.header::before, .inst-header::before { display: none; }
+
+/* Header — borde suave, sombra difusa */
+.header, .inst-header {
+  border-bottom: 1px solid var(--soft) !important;
+  box-shadow: 0 2px 10px rgba(26,26,46,0.07) !important;
+}
+
+/* Body — dot grid apenas visible */
+body {
+  background-image: radial-gradient(circle, rgba(26,26,46,0.035) 1px, transparent 1.2px) !important;
+}
+
+/* Cards y paneles principales */
+.datos-wrap, .tipo-wrap, .campo-wrap, .sec, .reg-card,
+.excl-card, .duracion-wrap, .dim, .leyenda, .card,
+.sint-card, .nota-exp { border-radius: 10px !important; }
+
+/* Cards con overflow hidden para respetar radius */
+.campo-wrap, .sec, .dim, .reg-card { overflow: hidden !important; }
+
+/* Cronómetro — display en azul institucional, contenedor elegante */
+.crono-wrap { border-radius: 16px !important; overflow: hidden !important; }
+.crono-display { color: var(--accent) !important; letter-spacing: 8px !important; }
+.crono-display.warning { color: var(--imef-naranja) !important; }
+.crono-display.danger  { color: var(--danger) !important; }
+
+/* Badges de número: circulares */
+.campo-num, .dim-num { border-radius: 50% !important; }
+
+/* Botones principales */
+.btn-pdf, .btn-reset, .act-btn, .ctrl-btn, .dur-btn,
+.tipo-btn, .tab { border-radius: 6px !important; }
+
+/* Botones pequeños */
+.excl-eq-btn, .cnt-btn { border-radius: 4px !important; }
+
+/* Inputs y selects */
+.field input, .field select, .obs-textarea, .marcador-input,
+.custom-input, .excl-num-input { border-radius: 6px !important; }
+
+/* Checkboxes — levemente redondeados */
+.check-box, .vacio-check { border-radius: 4px !important; }
+
+/* Escala de valoración */
+.escala { border-radius: 6px !important; overflow: hidden !important; }
+
+/* Badges y etiquetas */
+.card-badge, .nivel-badge, .lbadge, .title-tag { border-radius: 4px !important; }
+
+/* Timeout dot — circular */
+.timeout-dot { border-radius: 50% !important; }
+
+/* Excl card — sin overflow para no cortar el badge */
+.excl-card { overflow: visible !important; }
+
+/* Exclusión finalizada badge */
+.excl-badge-fin { border-radius: 6px !important; }
+
 </style>
 </head>
 <body>
