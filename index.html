@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;600;700&family=Montserrat:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;600;700&family=Montserrat:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <title>IMEF · Handball — Recursos Didácticos</title>
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -15,21 +15,21 @@
     --imef-rojo:    #CC1B2C;
     --imef-purpura: #7920A2;
     --imef-naranja: #C86500;
-    --accent:       #1A57B0;
+    --accent:       #B0121F;
     --accent2:      #278035;
     --danger:       #CC1B2C;
-    --ink:          #1A1A2E;
-    --text:         #1A1A2E;
-    --text-soft:    #556070;
-    --soft:         #C8D4E4;
-    --bg:           #EEF1F6;
+    --ink:          #142A4D;
+    --text:         #142A4D;
+    --text-soft:    #5C6C82;
+    --soft:         #D7DCE4;
+    --bg:           #F1F3F6;
     --bg-panel:     #FFFFFF;
-    --bg-raised:    #F7F9FC;
+    --bg-raised:    #FAFBFC;
   }
   body {
     font-family: 'Montserrat', system-ui, sans-serif;
     background: var(--bg);
-    background-image: radial-gradient(circle, rgba(26,26,46,0.035) 1px, transparent 1.2px);
+    background-image: radial-gradient(circle, rgba(20,42,77,0.035) 1px, transparent 1.2px);
     background-size: 16px 16px;
     min-height: 100vh;
     color: var(--text);
@@ -45,7 +45,7 @@
   .header::before {
     content: '';
     position: absolute; inset: 0;
-    background: repeating-linear-gradient(115deg, rgba(26,87,176,0.06) 0px, rgba(26,87,176,0.06) 1px, transparent 1px, transparent 12px);
+    background: repeating-linear-gradient(115deg, rgba(20,42,77,0.04) 0px, rgba(20,42,77,0.04) 1px, transparent 1px, transparent 12px);
     mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent);
   }
   .brand {
@@ -55,7 +55,7 @@
     position: relative;
   }
   .brand-sub {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
     font-size: .62rem; letter-spacing: .1em;
     text-transform: uppercase; color: var(--text-soft);
     margin-top: 4px; position: relative;
@@ -64,7 +64,7 @@
   .wrap { max-width: 640px; margin: 0 auto; padding: 32px 20px 60px; }
 
   .section-label {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
     font-size: .62rem; letter-spacing: .15em;
     text-transform: uppercase; color: var(--accent);
     font-weight: 500;
@@ -84,7 +84,7 @@
     font-size: .95rem;
     font-weight: 700;
     transition: transform .12s, box-shadow .12s;
-    box-shadow: 0 2px 8px rgba(26,26,46,0.08);
+    box-shadow: 0 2px 8px rgba(20,42,77,0.08);
     position: relative;
   }
   .card::before {
@@ -94,12 +94,12 @@
   }
   .card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(26,26,46,0.11);
+    box-shadow: 0 4px 16px rgba(20,42,77,0.11);
     color: var(--text);
   }
   .card-badge {
     display: inline-block;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
     font-size: .58rem; font-weight: 500;
     letter-spacing: .1em; text-transform: uppercase;
     padding: 2px 8px;
@@ -111,7 +111,7 @@
   .card span {
     display: block;
     font-size: .75rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
     color: var(--text-soft); font-weight: 400;
     margin-top: 5px; letter-spacing: .02em;
   }
@@ -119,37 +119,41 @@
   .footer {
     margin-top: 48px; padding-top: 16px;
     border-top: 2px solid var(--ink);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
     font-size: .6rem; color: var(--text-soft);
     letter-spacing: .07em; text-align: center; line-height: 1.9;
   }
 
-/* ── Identidad IMEF: estilo limpio-profesional ── */
-
-/* Stripe del header: oculto */
-.header::before, .inst-header::before { display: none; }
-
-/* Header — borde suave, sombra difusa */
+/* ── Sistema monocromo con acento único ── */
+.header::before, .inst-header::before {
+  inset: unset;
+  display: block;
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--imef-rojo) 20%, var(--imef-purpura) 20% 40%, var(--imef-verde) 40% 60%, var(--imef-azul) 60% 80%, var(--imef-naranja) 80%);
+  mask-image: none;
+}
 .header, .inst-header {
   border-bottom: 1px solid var(--soft) !important;
-  box-shadow: 0 2px 10px rgba(26,26,46,0.07) !important;
+  box-shadow: 0 1px 4px rgba(20,42,77,0.06) !important;
 }
 
 /* Body — dot grid apenas visible */
 body {
-  background-image: radial-gradient(circle, rgba(26,26,46,0.035) 1px, transparent 1.2px) !important;
+  background-image: radial-gradient(circle, rgba(20,42,77,0.035) 1px, transparent 1.2px) !important;
 }
 
 /* Cards y paneles principales */
 .datos-wrap, .tipo-wrap, .campo-wrap, .sec, .reg-card,
 .excl-card, .duracion-wrap, .dim, .leyenda, .card,
-.sint-card, .nota-exp { border-radius: 10px !important; }
+.sint-card, .nota-exp { border-radius: 2px !important; }
 
 /* Cards con overflow hidden para respetar radius */
 .campo-wrap, .sec, .dim, .reg-card { overflow: hidden !important; }
 
 /* Cronómetro — display en azul institucional, contenedor elegante */
-.crono-wrap { border-radius: 16px !important; overflow: hidden !important; }
+.crono-wrap { border-radius: 2px !important; overflow: hidden !important; }
 .crono-display { color: var(--accent) !important; letter-spacing: 8px !important; }
 .crono-display.warning { color: var(--imef-naranja) !important; }
 .crono-display.danger  { color: var(--danger) !important; }
@@ -159,23 +163,23 @@ body {
 
 /* Botones principales */
 .btn-pdf, .btn-reset, .act-btn, .ctrl-btn, .dur-btn,
-.tipo-btn, .tab { border-radius: 6px !important; }
+.tipo-btn, .tab { border-radius: 2px !important; }
 
 /* Botones pequeños */
-.excl-eq-btn, .cnt-btn { border-radius: 4px !important; }
+.excl-eq-btn, .cnt-btn { border-radius: 2px !important; }
 
 /* Inputs y selects */
 .field input, .field select, .obs-textarea, .marcador-input,
-.custom-input, .excl-num-input { border-radius: 6px !important; }
+.custom-input, .excl-num-input { border-radius: 2px !important; }
 
 /* Checkboxes — levemente redondeados */
-.check-box, .vacio-check { border-radius: 4px !important; }
+.check-box, .vacio-check { border-radius: 2px !important; }
 
 /* Escala de valoración */
-.escala { border-radius: 6px !important; overflow: hidden !important; }
+.escala { border-radius: 2px !important; overflow: hidden !important; }
 
 /* Badges y etiquetas */
-.card-badge, .nivel-badge, .lbadge, .title-tag { border-radius: 4px !important; }
+.card-badge, .nivel-badge, .lbadge, .title-tag { border-radius: 2px !important; }
 
 /* Timeout dot — circular */
 .timeout-dot { border-radius: 50% !important; }
@@ -184,7 +188,7 @@ body {
 .excl-card { overflow: visible !important; }
 
 /* Exclusión finalizada badge */
-.excl-badge-fin { border-radius: 6px !important; }
+.excl-badge-fin { border-radius: 2px !important; }
 
 </style>
 </head>
