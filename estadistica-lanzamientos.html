@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;600;700&family=Montserrat:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;600;700&family=Montserrat:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   <title>Estadística de Lanzamientos</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -15,16 +15,16 @@
       --imef-rojo:    #CC1B2C;
       --imef-purpura: #7920A2;
       --imef-naranja: #C86500;
-      --accent:       #1A57B0;
+      --accent:       #B0121F;
       --accent2:      #278035;
       --danger:       #CC1B2C;
-      --ink:          #1A1A2E;
-      --text:         #1A1A2E;
-      --text-soft:    #556070;
-      --soft:         #C8D4E4;
-      --bg:           #EEF1F6;
+      --ink:          #142A4D;
+      --text:         #142A4D;
+      --text-soft:    #5C6C82;
+      --soft:         #D7DCE4;
+      --bg:           #F1F3F6;
       --bg-panel:     #FFFFFF;
-      --bg-raised:    #F7F9FC;
+      --bg-raised:    #FAFBFC;
       --gol:    #278035;
       --fallo:  #CC1B2C;
       --parada: #C86500;
@@ -32,7 +32,7 @@
     body {
       font-family: 'Montserrat', system-ui, sans-serif;
       background: var(--bg);
-      background-image: radial-gradient(circle, rgba(26,26,46,0.035) 1px, transparent 1.2px);
+      background-image: radial-gradient(circle, rgba(20,42,77,0.035) 1px, transparent 1.2px);
       background-size: 16px 16px;
       min-height: 100vh; padding-bottom: 32px; color: var(--text);
     }
@@ -44,7 +44,7 @@
     }
     .encabezado::before {
       content: ''; position: absolute; inset: 0;
-      background: repeating-linear-gradient(115deg, rgba(26,87,176,0.06) 0px, rgba(26,87,176,0.06) 1px, transparent 1px, transparent 12px);
+      background: repeating-linear-gradient(115deg, rgba(20,42,77,0.04) 0px, rgba(20,42,77,0.04) 1px, transparent 1px, transparent 12px);
       mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent);
     }
     .encabezado h1 {
@@ -61,7 +61,7 @@
     .campo { display: flex; flex-direction: column; gap: 2px; }
     .campo label { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text-soft); }
     .campo input, .campo select {
-      border: 2px solid var(--ink); border-radius: 0; padding: 5px 9px;
+      border: 2px solid var(--ink); border-radius: 2px; padding: 5px 9px;
       font-size: .88rem; color: var(--text); font-weight: 600;
       font-family: 'Montserrat', system-ui;
     }
@@ -85,18 +85,18 @@
     /* ── Tipo tabs ── */
     .tipo-tabs { display: flex; gap: 6px; }
     .tab {
-      flex: 1; padding: 9px 12px; border: 2px solid var(--ink); border-radius: 0;
+      flex: 1; padding: 9px 12px; border: 2px solid var(--ink); border-radius: 2px;
       background: var(--bg-panel); color: var(--text); font-weight: 700; font-size: .85rem;
       cursor: pointer; text-align: center; transition: transform .12s, box-shadow .12s;
       font-family: 'Montserrat', system-ui;
     }
-    .tab.activo { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 2px 8px rgba(26,26,46,0.08); }
-    .tab:hover:not(.activo) { background: var(--soft); transform: translateY(-2px); box-shadow: 0 2px 8px rgba(26,26,46,0.08); }
+    .tab.activo { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 2px 8px rgba(20,42,77,0.08); }
+    .tab:hover:not(.activo) { background: var(--soft); transform: translateY(-2px); box-shadow: 0 2px 8px rgba(20,42,77,0.08); }
 
     /* ── Pasos / indicadores ── */
     .pasos { display: flex; gap: 8px; }
     .paso {
-      flex: 1; background: var(--bg-panel); border: 2px solid var(--ink); border-radius: 0;
+      flex: 1; background: var(--bg-panel); border: 2px solid var(--ink); border-radius: 2px;
       padding: 7px 12px; font-size: .8rem; font-weight: 600; color: var(--text-soft);
       text-align: center; transition: all .2s;
     }
@@ -105,8 +105,8 @@
 
     /* ── Cancha (imagen + SVG overlay) ── */
     .cancha-wrap {
-      position: relative; border-radius: 0; overflow: hidden;
-      box-shadow: 0 4px 16px rgba(26,26,46,0.11); border: 2px solid var(--ink);
+      position: relative; border-radius: 2px; overflow: hidden;
+      box-shadow: 0 4px 16px rgba(20,42,77,0.11); border: 2px solid var(--ink);
       background: var(--bg-panel);
     }
     .cancha-wrap img { display: block; width: 100%; height: auto; }
@@ -134,29 +134,29 @@
     .zona-label {
       font-size: 22px; font-weight: 900; fill: rgba(26,26,46,.6);
       text-anchor: middle; dominant-baseline: middle; pointer-events: none;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Roboto Mono', monospace;
     }
     text[id^="gzl-"] { fill: rgba(204,27,44,.85); }
 
     .gz-lbl {
       font-size: 28px; font-weight: 900; fill: white;
       text-anchor: middle; dominant-baseline: middle; pointer-events: none;
-      font-family: 'JetBrains Mono', monospace; display: none;
+      font-family: 'Roboto Mono', monospace; display: none;
     }
     .cz-lbl {
       font-size: 28px; font-weight: 900; fill: white;
       text-anchor: middle; dominant-baseline: middle; pointer-events: none;
-      font-family: 'JetBrains Mono', monospace; display: none;
+      font-family: 'Roboto Mono', monospace; display: none;
     }
 
     /* ── Controles debajo de la cancha ── */
     .controles {
-      background: var(--bg-panel); border-radius: 0; padding: 12px;
-      box-shadow: 0 2px 12px rgba(26,26,46,0.09); border: 2px solid var(--ink);
+      background: var(--bg-panel); border-radius: 2px; padding: 12px;
+      box-shadow: 0 2px 12px rgba(20,42,77,0.09); border: 2px solid var(--ink);
     }
     .res-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 10px; }
     .rb {
-      padding: 10px 4px; border: 2px solid; border-radius: 0;
+      padding: 10px 4px; border: 2px solid; border-radius: 2px;
       cursor: pointer; font-weight: 700; font-size: .88rem; background: var(--bg-panel);
       transition: transform .12s, box-shadow .12s; text-align: center;
       font-family: 'Montserrat', system-ui;
@@ -164,35 +164,35 @@
     .rb.gol    { border-color: var(--gol);    color: var(--gol); }
     .rb.fallo  { border-color: var(--fallo);  color: var(--fallo); }
     .rb.parada { border-color: var(--parada); color: var(--parada); }
-    .rb.on.gol    { background: var(--gol);    color: white; box-shadow: 0 2px 8px rgba(26,26,46,0.08); }
-    .rb.on.fallo  { background: var(--fallo);  color: white; box-shadow: 0 2px 8px rgba(26,26,46,0.08); }
-    .rb.on.parada { background: var(--parada); color: white; box-shadow: 0 2px 8px rgba(26,26,46,0.08); }
-    .rb:hover:not(.on) { transform: translateY(-2px); box-shadow: 0 1px 6px rgba(26,26,46,0.07); }
+    .rb.on.gol    { background: var(--gol);    color: white; box-shadow: 0 2px 8px rgba(20,42,77,0.08); }
+    .rb.on.fallo  { background: var(--fallo);  color: white; box-shadow: 0 2px 8px rgba(20,42,77,0.08); }
+    .rb.on.parada { background: var(--parada); color: white; box-shadow: 0 2px 8px rgba(20,42,77,0.08); }
+    .rb:hover:not(.on) { transform: translateY(-2px); box-shadow: 0 1px 6px rgba(20,42,77,0.07); }
 
     .flash {
       font-size: .82rem; font-weight: 600; text-align: center;
-      padding: 7px; border-radius: 0; margin-bottom: 8px; display: none;
+      padding: 7px; border-radius: 2px; margin-bottom: 8px; display: none;
     }
     .flash.ok  { background: #e8f8ef; color: var(--gol);   display: block; border-left: 3px solid var(--gol); }
     .flash.err { background: #fdecea; color: var(--fallo); display: block; border-left: 3px solid var(--fallo); }
 
     .btn-reg {
       width: 100%; padding: 12px; background: var(--accent); color: white;
-      border: 2px solid var(--ink); border-radius: 0;
+      border: 2px solid var(--ink); border-radius: 2px;
       font-size: 1.05rem; font-weight: 400; cursor: pointer;
       letter-spacing: .05em; text-transform: uppercase;
       transition: transform .12s, box-shadow .12s;
       font-family: 'Cabin Condensed', system-ui;
     }
     .btn-reg:disabled { background: #bbb; border-color: #bbb; cursor: not-allowed; box-shadow: none; }
-    .btn-reg:not(:disabled):hover { transform: translateY(-2px); box-shadow: 0 2px 12px rgba(26,26,46,0.09); }
+    .btn-reg:not(:disabled):hover { transform: translateY(-2px); box-shadow: 0 2px 12px rgba(20,42,77,0.09); }
 
     /* ── Panel derecho (stats) ── */
     .panel-stats { display: flex; flex-direction: column; gap: 10px; }
 
     .stats-card {
-      background: var(--bg-panel); border-radius: 0;
-      box-shadow: 0 2px 12px rgba(26,26,46,0.09); border: 2px solid var(--ink); overflow: hidden;
+      background: var(--bg-panel); border-radius: 2px;
+      box-shadow: 0 2px 12px rgba(20,42,77,0.09); border: 2px solid var(--ink); overflow: hidden;
     }
     .stats-titulo {
       background: var(--accent); color: white; padding: 8px 14px;
@@ -204,8 +204,8 @@
     .badges { display: flex; gap: 6px; margin-bottom: 10px; }
     .badge {
       flex: 1; text-align: center; padding: 5px 2px;
-      border-radius: 0; font-size: .75rem; font-weight: 700;
-      font-family: 'JetBrains Mono', monospace;
+      border-radius: 2px; font-size: .75rem; font-weight: 700;
+      font-family: 'Roboto Mono', monospace;
     }
     .badge.g { background: #e8f8ef; color: var(--gol); }
     .badge.f { background: #fdecea; color: var(--fallo); }
@@ -215,13 +215,13 @@
     thead th {
       background: var(--soft); padding: 5px 6px; text-align: left;
       color: var(--text); font-weight: 700; font-size: .7rem; border-bottom: 2px solid var(--ink);
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Roboto Mono', monospace;
     }
     tbody td { padding: 4px 6px; border-bottom: 1px solid var(--soft); }
     .chip {
-      display: inline-block; padding: 1px 7px; border-radius: 0;
+      display: inline-block; padding: 1px 7px; border-radius: 2px;
       font-size: .7rem; font-weight: 700;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Roboto Mono', monospace;
     }
     .chip.Gol    { background: #e8f8ef; color: var(--gol); }
     .chip.Fallo  { background: #fdecea; color: var(--fallo); }
@@ -239,14 +239,14 @@
     /* ── Botones extra partido ── */
     .btn-exportar {
       padding: 6px 14px; background: var(--gol); color: white;
-      border: 2px solid var(--ink); border-radius: 0;
+      border: 2px solid var(--ink); border-radius: 2px;
       font-size: .82rem; font-weight: 700; cursor: pointer; align-self: flex-end;
       transition: transform .12s, box-shadow .12s;
     }
-    .btn-exportar:hover { transform: translateY(-2px); box-shadow: 0 2px 8px rgba(26,26,46,0.08); }
+    .btn-exportar:hover { transform: translateY(-2px); box-shadow: 0 2px 8px rgba(20,42,77,0.08); }
     .btn-borrar {
       padding: 6px 14px; background: var(--bg-panel); color: var(--fallo);
-      border: 2px solid var(--fallo); border-radius: 0;
+      border: 2px solid var(--fallo); border-radius: 2px;
       font-size: .82rem; font-weight: 700; cursor: pointer; align-self: flex-end;
       transition: transform .12s, box-shadow .12s;
     }
@@ -289,12 +289,12 @@
 /* Header — borde suave, sombra difusa */
 .header, .inst-header {
   border-bottom: 1px solid var(--soft) !important;
-  box-shadow: 0 2px 10px rgba(26,26,46,0.07) !important;
+  box-shadow: 0 2px 10px rgba(20,42,77,0.07) !important;
 }
 
 /* Body — dot grid apenas visible */
 body {
-  background-image: radial-gradient(circle, rgba(26,26,46,0.035) 1px, transparent 1.2px) !important;
+  background-image: radial-gradient(circle, rgba(20,42,77,0.035) 1px, transparent 1.2px) !important;
 }
 
 /* Cards y paneles principales */
@@ -343,6 +343,21 @@ body {
 /* Exclusión finalizada badge */
 .excl-badge-fin { border-radius: 6px !important; }
 
+
+/* ── Sistema monocromo con acento único ── */
+.header::before, .inst-header::before {
+  inset: unset;
+  display: block;
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--imef-rojo) 20%, var(--imef-purpura) 20% 40%, var(--imef-verde) 40% 60%, var(--imef-azul) 60% 80%, var(--imef-naranja) 80%);
+  mask-image: none;
+}
+.header, .inst-header {
+  border-bottom: 1px solid var(--soft) !important;
+  box-shadow: 0 1px 4px rgba(20,42,77,0.06) !important;
+}
 </style>
 </head>
 <body>
