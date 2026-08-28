@@ -3,258 +3,261 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;600;700&family=Montserrat:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <title>Planilla Digital — Balonmano</title>
 <style>
 :root {
-  --azul: #0D3B66;
-  --verde: #00A896;
-  --gris: #333333;
-  --gris-claro: #F4F4F6;
-  --blanco: #ffffff;
-  --rule: #d0d4da;
-  --rojo: #c0392b;
-  --amarillo: #f39c12;
+  --imef-azul:    #1A57B0;
+  --imef-verde:   #278035;
+  --imef-rojo:    #CC1B2C;
+  --imef-purpura: #7920A2;
+  --imef-naranja: #C86500;
+  --accent:       #1A57B0;
+  --accent2:      #278035;
+  --danger:       #CC1B2C;
+  --ink:          #1A1A2E;
+  --text:         #1A1A2E;
+  --text-soft:    #556070;
+  --soft:         #C8D4E4;
+  --bg:           #EEF1F6;
+  --bg-panel:     #FFFFFF;
+  --bg-raised:    #F7F9FC;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background: var(--gris-claro);
-  color: var(--gris);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
+  background: var(--bg);
+  background-image: radial-gradient(circle, rgba(26,26,46,0.06) 1px, transparent 1.2px);
+  background-size: 16px 16px;
+  color: var(--text);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
   padding-bottom: 80px;
 }
 
-/* HEADER */
 .header {
-  background: var(--azul);
-  color: var(--blanco);
+  background: var(--bg-panel);
+  border-bottom: 3px solid var(--ink);
   padding: 14px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-  border-bottom: 3px solid var(--verde);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+.header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(115deg, rgba(26,87,176,0.06) 0px, rgba(26,87,176,0.06) 1px, transparent 1px, transparent 12px);
+  mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent);
+  pointer-events: none;
+}
+.brand {
+  font-family: 'Cabin Condensed', sans-serif;
+  font-size: 1.3rem; font-weight: 700;
+  color: var(--accent); letter-spacing: .05em; position: relative;
+}
+.brand span { color: var(--accent2); }
+.header-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-soft); position: relative;
 }
 
-.brand { font-size: 18px; font-weight: bold; letter-spacing: 1px; }
-.brand span { color: var(--verde); }
-.header-tag { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; }
-
-/* WRAP */
 .wrap { max-width: 1200px; margin: 0 auto; padding: 20px 16px; }
 
-/* SECCIÓN */
-.sec { background: var(--blanco); border: 1px solid var(--rule); border-radius: 6px; margin-bottom: 16px; overflow: hidden; }
-.sec-head { background: var(--azul); color: var(--blanco); padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; }
-.sec-title { font-size: 12px; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; }
+.sec {
+  background: var(--bg-panel);
+  border: 2px solid var(--ink);
+  margin-bottom: 16px;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.sec-head {
+  background: var(--accent);
+  color: white;
+  padding: 10px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 2px solid var(--ink);
+}
+.sec-title {
+  font-family: 'Cabin Condensed', sans-serif;
+  font-size: .85rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+}
 .sec-body { padding: 16px; }
 
-/* DATOS DEL PARTIDO */
 .datos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
 
 .field { display: flex; flex-direction: column; gap: 4px; }
-.field label { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color: var(--verde); font-weight: bold; }
-.field input, .field select {
-  border: 1.5px solid var(--rule);
-  border-radius: 4px;
-  padding: 8px 10px;
-  font-family: Arial, sans-serif;
-  font-size: 13px;
-  color: var(--gris);
-  background: var(--gris-claro);
-  outline: none;
+.field label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .6rem; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--accent2); font-weight: 500;
 }
-.field input:focus, .field select:focus { border-color: var(--verde); }
+.field input, .field select {
+  border: 2px solid var(--ink); border-radius: 0;
+  padding: 8px 10px;
+  font-family: 'Montserrat', sans-serif; font-size: 13px;
+  color: var(--text); background: var(--bg-raised);
+  outline: none; min-height: 40px;
+  -webkit-appearance: none; appearance: none;
+}
+.field input:focus, .field select:focus { border-color: var(--accent); }
 
-/* MARCADOR */
 .marcador-wrap { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
-
 .marcador-equipo { text-align: center; }
-.marcador-nombre { font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: var(--azul); margin-bottom: 6px; }
-
+.marcador-nombre {
+  font-family: 'Cabin Condensed', sans-serif;
+  font-size: .8rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 6px;
+}
 .marcador-tiempos { display: flex; flex-direction: column; gap: 8px; }
 .tiempo-row { display: flex; align-items: center; gap: 10px; }
-.tiempo-label { font-size: 10px; color: var(--gris); opacity: 0.6; width: 90px; text-align: right; }
+.tiempo-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .6rem; color: var(--text-soft); width: 90px; text-align: right;
+}
 .tiempo-val { display: flex; align-items: center; gap: 6px; }
 .marcador-input {
-  width: 60px;
-  font-size: 28px;
-  font-weight: bold;
+  width: 64px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px; font-weight: 400;
   text-align: center;
-  border: 2px solid var(--rule);
-  border-radius: 6px;
+  border: 2px solid var(--ink); border-radius: 0;
   padding: 4px;
-  font-family: Arial, sans-serif;
-  color: var(--azul);
-  background: var(--gris-claro);
-  outline: none;
+  color: var(--accent); background: var(--bg-raised);
+  outline: none; min-height: 50px;
 }
-.marcador-input:focus { border-color: var(--verde); }
-.marcador-input.final { font-size: 36px; color: var(--azul); border-color: var(--azul); }
+.marcador-input:focus { border-color: var(--accent); }
+.marcador-input.final { font-size: 36px; border-color: var(--accent); }
+.marcador-sep {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 32px; font-weight: 400; color: var(--soft); margin-top: 16px;
+}
 
-.marcador-sep { font-size: 32px; font-weight: bold; color: var(--rule); margin-top: 16px; }
-
-/* TABLA JUGADORES */
 .tabla-jugadores { width: 100%; border-collapse: collapse; font-size: 12px; }
 .tabla-jugadores th {
-  background: var(--azul);
-  color: var(--blanco);
-  padding: 8px 6px;
-  text-align: center;
-  font-size: 9px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  white-space: nowrap;
+  background: var(--ink); color: white;
+  padding: 8px 6px; text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
 }
 .tabla-jugadores th.left { text-align: left; padding-left: 10px; }
-
 .tabla-jugadores td {
   padding: 5px 4px;
-  border-bottom: 1px solid var(--gris-claro);
-  text-align: center;
-  vertical-align: middle;
+  border-bottom: 1.5px solid var(--bg);
+  text-align: center; vertical-align: middle;
 }
 .tabla-jugadores tr:last-child td { border-bottom: none; }
-.tabla-jugadores tr:hover td { background: #f0fbfa; }
-
+.tabla-jugadores tr:hover td { background: var(--soft); }
 .tabla-jugadores input[type="text"],
 .tabla-jugadores input[type="number"] {
-  border: 1px solid var(--rule);
-  border-radius: 3px;
+  border: 1.5px solid var(--ink); border-radius: 0;
   padding: 4px 6px;
-  font-family: Arial, sans-serif;
-  font-size: 12px;
-  color: var(--gris);
-  background: var(--blanco);
-  outline: none;
-  width: 100%;
+  font-family: 'Montserrat', sans-serif; font-size: 12px;
+  color: var(--text); background: var(--bg-raised);
+  outline: none; width: 100%;
 }
-
 .tabla-jugadores input[type="text"]:focus,
-.tabla-jugadores input[type="number"]:focus { border-color: var(--verde); }
+.tabla-jugadores input[type="number"]:focus { border-color: var(--accent); }
 
 .col-num { width: 44px; }
 .col-nombre { min-width: 160px; }
-.col-goles { width: 50px; }
-.col-7m { width: 50px; }
-.col-amon { width: 60px; }
-.col-excl { width: 50px; }
-.col-desc { width: 60px; }
+.col-goles, .col-7m, .col-excl { width: 50px; }
+.col-amon, .col-desc { width: 60px; }
 
-/* CONTADORES +/- */
 .counter-wrap { display: flex; align-items: center; justify-content: center; gap: 4px; }
 .cnt-btn {
-  width: 22px; height: 22px;
-  border-radius: 4px;
-  border: 1px solid var(--rule);
-  background: var(--gris-claro);
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--gris);
-  font-family: Arial, sans-serif;
-  line-height: 1;
+  width: 24px; height: 24px; border-radius: 0;
+  border: 1.5px solid var(--ink);
+  background: var(--bg-raised);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--text); line-height: 1;
+  transition: background .12s;
 }
-.cnt-btn:hover { background: var(--verde); color: var(--blanco); border-color: var(--verde); }
-.cnt-val { font-size: 14px; font-weight: bold; min-width: 20px; text-align: center; color: var(--azul); }
-
-/* CHECKBOX estilo */
-.check-sancion {
-  width: 20px; height: 20px;
-  cursor: pointer;
-  accent-color: var(--azul);
+.cnt-btn:hover { background: var(--accent2); color: white; border-color: var(--accent2); }
+.cnt-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; font-weight: 700; min-width: 20px; text-align: center; color: var(--accent);
 }
 
-/* REGISTRO GENERAL */
+.check-sancion { width: 20px; height: 20px; cursor: pointer; accent-color: var(--accent); }
+
 .registro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-@media(max-width:600px) { .registro-grid { grid-template-columns: 1fr; } }
 
-.reg-card { border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
-.reg-card-head { background: var(--gris-claro); padding: 8px 12px; font-size: 10px; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; color: var(--azul); border-bottom: 1px solid var(--rule); }
+.reg-card { border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+.reg-card-head {
+  background: var(--bg-raised);
+  padding: 8px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .58rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent); border-bottom: 2px solid var(--ink);
+}
 .reg-card-body { padding: 12px; }
-
-.reg-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--gris-claro); }
+.reg-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--bg); }
 .reg-row:last-child { border-bottom: none; }
-.reg-label { font-size: 12px; color: var(--gris); }
+.reg-label { font-family: 'Montserrat', sans-serif; font-size: 13px; color: var(--text); }
 .reg-controls { display: flex; align-items: center; gap: 6px; }
-.reg-val { font-size: 18px; font-weight: bold; color: var(--azul); min-width: 30px; text-align: center; }
+.reg-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px; font-weight: 700; color: var(--accent); min-width: 30px; text-align: center;
+}
 
 .timeout-used { display: flex; gap: 6px; flex-wrap: wrap; }
 .timeout-dot {
   width: 18px; height: 18px;
-  border-radius: 50%;
-  border: 2px solid var(--rule);
-  background: var(--gris-claro);
-  cursor: pointer;
-  transition: all 0.15s;
+  border-radius: 0; border: 2px solid var(--ink);
+  background: var(--bg-raised); cursor: pointer; transition: background .12s;
 }
-.timeout-dot.usado { background: var(--azul); border-color: var(--azul); }
+.timeout-dot.usado { background: var(--accent); border-color: var(--accent); }
 
-/* OBSERVACIONES */
 .obs-textarea {
-  width: 100%;
-  min-height: 80px;
-  border: 1.5px solid var(--rule);
-  border-radius: 4px;
+  width: 100%; min-height: 80px;
+  border: 2px solid var(--ink); border-radius: 0;
   padding: 10px;
-  font-family: Arial, sans-serif;
-  font-size: 13px;
-  color: var(--gris);
-  resize: vertical;
-  outline: none;
+  font-family: 'Montserrat', sans-serif; font-size: 13px;
+  color: var(--text); background: var(--bg-raised);
+  resize: vertical; outline: none;
 }
-.obs-textarea:focus { border-color: var(--verde); }
+.obs-textarea:focus { border-color: var(--accent); }
 
-/* BOTONES ACCIÓN */
 .action-bar {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background: var(--blanco);
-  border-top: 2px solid var(--rule);
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--bg-panel);
+  border-top: 3px solid var(--ink);
   padding: 10px 20px;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  z-index: 100;
-  justify-content: center;
+  display: flex; gap: 8px; flex-wrap: wrap;
+  z-index: 100; justify-content: center;
 }
-
 .act-btn {
-  font-family: Arial, sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 10px 18px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  letter-spacing: 0.5px;
-  transition: all 0.15s;
+  font-family: 'Cabin Condensed', sans-serif;
+  font-size: .9rem; font-weight: 700;
+  padding: 10px 18px; border-radius: 0;
+  border: 2px solid var(--ink);
+  cursor: pointer; letter-spacing: 0.5px;
+  min-height: 44px;
+  box-shadow: 3px 3px 0 var(--ink); transition: transform .12s, box-shadow .12s;
 }
+.act-btn:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--ink); }
+.act-btn:active { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--ink); }
+.btn-agregar  { background: var(--accent2); color: white; }
+.btn-limpiar  { background: var(--bg-raised); color: var(--text-soft); }
+.btn-imprimir { background: var(--accent); color: white; }
+.btn-guardar  { background: var(--accent2); color: white; }
+.btn-cargar   { background: var(--imef-naranja); color: white; }
 
-.act-btn:active { transform: scale(0.97); }
-.btn-agregar  { background: var(--verde); color: var(--blanco); }
-.btn-limpiar  { background: var(--gris-claro); color: var(--gris); border: 1.5px solid var(--rule); }
-.btn-imprimir { background: var(--azul); color: var(--blanco); }
-.btn-guardar  { background: #1a6b3a; color: var(--blanco); }
-.btn-cargar   { background: var(--amarillo); color: var(--blanco); }
-
-/* PRINT */
 @media print {
   .action-bar { display: none; }
-  body { background: white; padding-bottom: 0; }
+  body { background: white; background-image: none; padding-bottom: 0; }
   .sec { break-inside: avoid; }
-  .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .sec-head { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .tabla-jugadores th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .header, .sec-head, .tabla-jugadores th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
-
 @media(max-width:700px) {
   .tabla-jugadores { font-size: 11px; }
   .col-nombre { min-width: 100px; }
+  .registro-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -310,7 +313,7 @@ body {
             <div class="tiempo-label">1er tiempo</div>
             <div class="tiempo-val">
               <input class="marcador-input" type="number" id="m-a1" min="0" value="0">
-              <span style="font-size:20px;color:var(--rule);">–</span>
+              <span style="font-size:20px;color:var(--soft);">–</span>
               <input class="marcador-input" type="number" id="m-b1" min="0" value="0">
             </div>
           </div>
@@ -318,15 +321,15 @@ body {
             <div class="tiempo-label">2do tiempo</div>
             <div class="tiempo-val">
               <input class="marcador-input" type="number" id="m-a2" min="0" value="0">
-              <span style="font-size:20px;color:var(--rule);">–</span>
+              <span style="font-size:20px;color:var(--soft);">–</span>
               <input class="marcador-input" type="number" id="m-b2" min="0" value="0">
             </div>
           </div>
           <div class="tiempo-row">
-            <div class="tiempo-label" style="font-weight:bold;color:var(--azul);opacity:1;">Resultado final</div>
+            <div class="tiempo-label" style="font-weight:bold;color:var(--accent);opacity:1;">Resultado final</div>
             <div class="tiempo-val">
               <input class="marcador-input final" type="number" id="m-af" min="0" value="0">
-              <span style="font-size:28px;color:var(--azul);font-weight:bold;">–</span>
+              <span style="font-size:28px;color:var(--accent);font-weight:bold;">–</span>
               <input class="marcador-input final" type="number" id="m-bf" min="0" value="0">
             </div>
           </div>
@@ -342,7 +345,7 @@ body {
   <div class="sec">
     <div class="sec-head">
       <div class="sec-title" id="head-eqA">Equipo A — Jugadores</div>
-      <button onclick="agregarJugador('A')" style="background:var(--verde);color:white;border:none;border-radius:4px;padding:5px 12px;font-size:11px;font-weight:bold;cursor:pointer;">+ Jugador</button>
+      <button onclick="agregarJugador('A')" style="background:var(--accent2);color:white;border:2px solid var(--ink);border-radius:0;padding:5px 12px;font-size:11px;font-weight:bold;cursor:pointer;box-shadow:2px 2px 0 var(--ink);">+ Jugador</button>
     </div>
     <div class="sec-body" style="padding:0;overflow-x:auto;">
       <table class="tabla-jugadores">
@@ -366,7 +369,7 @@ body {
   <div class="sec">
     <div class="sec-head">
       <div class="sec-title" id="head-eqB">Equipo B — Jugadores</div>
-      <button onclick="agregarJugador('B')" style="background:var(--verde);color:white;border:none;border-radius:4px;padding:5px 12px;font-size:11px;font-weight:bold;cursor:pointer;">+ Jugador</button>
+      <button onclick="agregarJugador('B')" style="background:var(--accent2);color:white;border:2px solid var(--ink);border-radius:0;padding:5px 12px;font-size:11px;font-weight:bold;cursor:pointer;box-shadow:2px 2px 0 var(--ink);">+ Jugador</button>
     </div>
     <div class="sec-body" style="padding:0;overflow-x:auto;">
       <table class="tabla-jugadores">
@@ -478,7 +481,7 @@ body {
 
       <!-- OBSERVACIONES -->
       <div style="margin-top:14px;">
-        <div style="font-size:10px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase;color:var(--azul);margin-bottom:6px;">Observaciones / Sanciones / Incidencias</div>
+        <div style="font-size:10px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Observaciones / Sanciones / Incidencias</div>
         <textarea class="obs-textarea" id="observaciones" placeholder="Registrá aquí incidencias, sanciones especiales, observaciones del partido…"></textarea>
       </div>
     </div>
