@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;600;700&family=Montserrat:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>IMEF · Handball — Sport 2026</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --imef-azul:     #1A57B0;
+    --imef-verde:    #278035;
+    --imef-rojo:     #CC1B2C;
+    --imef-purpura:  #7920A2;
+    --imef-naranja:  #C86500;
+    --imef-amarillo: #B8960B;
+    --accent:       #B0121F;
+    --danger:       #CC1B2C;
+    --ink:          #142A4D;
+    --text:         #142A4D;
+    --text-soft:    #5C6C82;
+    --soft:         #D7DCE4;
+    --bg:           #F1F3F6;
+    --bg-panel:     #FFFFFF;
+    --bg-raised:    #FAFBFC;
+  }
+  body {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    background: var(--bg);
+    background-image: radial-gradient(circle, rgba(20,42,77,0.035) 1px, transparent 1.2px);
+    background-size: 16px 16px;
+    min-height: 100vh;
+    color: var(--text);
+  }
+
+  .header {
+    background: var(--bg-panel);
+    border-bottom: 1px solid var(--soft);
+    box-shadow: 0 1px 4px rgba(20,42,77,0.06);
+    padding: 20px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(to right, var(--imef-rojo) 20%, var(--imef-purpura) 20% 40%, var(--imef-verde) 40% 60%, var(--imef-azul) 60% 80%, var(--imef-naranja) 80%);
+  }
+  .brand {
+    font-family: 'Cabin Condensed', system-ui;
+    font-size: 1.25rem; font-weight: 700;
+    color: var(--accent); letter-spacing: .05em;
+  }
+  .brand-sub {
+    font-family: 'Roboto Mono', monospace;
+    font-size: .62rem; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--text-soft);
+    margin-top: 4px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: .62rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--text-soft); text-decoration: none;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  .section-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: .62rem; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 10px; margin-top: 32px;
+    border-left: 3px solid var(--accent);
+    padding-left: 8px;
+  }
+  .section-label:first-child { margin-top: 0; }
+
+  .lead {
+    font-size: .85rem; color: var(--text-soft);
+    margin-bottom: 20px; line-height: 1.5;
+  }
+
+  /* ── Vista tabs ── */
+  .vista-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+  .tab {
+    font-family: 'Roboto Mono', monospace;
+    font-size: .72rem; font-weight: 500; letter-spacing: .04em;
+    padding: 9px 18px;
+    background: var(--bg-panel);
+    color: var(--text);
+    border: 2px solid var(--ink);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: transform .12s, box-shadow .12s;
+  }
+  .tab.activo { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 2px 8px rgba(20,42,77,0.08); }
+  .tab:hover:not(.activo) { background: var(--soft); transform: translateY(-2px); }
+
+  /* ── Filtro por equipo ── */
+  .filtro-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: .6rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--text-soft); margin-bottom: 8px;
+  }
+  .filtro-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+  .chip {
+    font-family: 'Roboto Mono', monospace;
+    font-size: .64rem; font-weight: 500; letter-spacing: .03em;
+    padding: 6px 12px;
+    background: var(--bg-panel);
+    color: var(--text);
+    border: 2px solid var(--ink);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: transform .12s, box-shadow .12s;
+  }
+  .chip:hover:not(.activo) { background: var(--soft); transform: translateY(-1px); }
+  .chip.activo { color: white; box-shadow: 0 2px 8px rgba(20,42,77,0.08); }
+  .chip[data-equipo="todos"].activo   { background: var(--ink);           border-color: var(--ink); }
+  .chip[data-equipo^="Rojo"].activo     { background: var(--imef-rojo);     border-color: var(--imef-rojo); }
+  .chip[data-equipo^="Azul"].activo     { background: var(--imef-azul);     border-color: var(--imef-azul); }
+  .chip[data-equipo^="Verde"].activo    { background: var(--imef-verde);    border-color: var(--imef-verde); }
+  .chip[data-equipo^="Amarillo"].activo { background: var(--imef-amarillo); border-color: var(--imef-amarillo); }
+
+  .vista { display: none; }
+  .vista.activa { display: block; }
+
+  .zona-tag {
+    font-family: 'Roboto Mono', monospace;
+    font-size: .6rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--text-soft); margin-bottom: 12px;
+  }
+
+  /* ── Info box: lógica de rotación ── */
+  .info-box {
+    background: var(--bg-panel);
+    border: 2px solid var(--ink);
+    border-radius: 2px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    font-size: .78rem;
+    line-height: 1.6;
+  }
+  .info-box dt {
+    font-family: 'Roboto Mono', monospace;
+    font-size: .62rem; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    margin-top: 8px;
+  }
+  .info-box dt:first-child { margin-top: 0; }
+  .info-box dd { color: var(--text-soft); }
+
+  /* ── Tabla de partidos ── */
+  .table-scroll { overflow-x: auto; border: 2px solid var(--ink); border-radius: 2px; background: var(--bg-panel); }
+  table {
+    width: 100%;
+    border-collapse: collapse; font-size: .76rem;
+  }
+  table.completa { min-width: 760px; }
+  table.condensada { min-width: 480px; }
+  thead th {
+    font-family: 'Roboto Mono', monospace;
+    font-size: .6rem; letter-spacing: .05em; text-transform: uppercase;
+    font-weight: 500; text-align: center;
+    background: var(--ink); color: white;
+    padding: 8px 6px;
+  }
+  thead tr.grp th {
+    background: var(--accent);
+    font-size: .58rem;
+  }
+  tbody td {
+    text-align: center;
+    padding: 7px 6px;
+    border-bottom: 1px solid var(--soft);
+    white-space: nowrap;
+  }
+  tbody tr:nth-child(even) { background: var(--bg-raised); }
+  tbody tr:hover { background: var(--soft); }
+  td.num { font-family: 'Roboto Mono', monospace; color: var(--text-soft); font-weight: 500; }
+  td.zona1 { color: var(--imef-azul); font-weight: 600; }
+  td.zona2 { color: var(--imef-verde); font-weight: 600; }
+  td.equipo { font-weight: 700; }
+  td.dim { color: var(--text-soft); }
+  td.detalle { color: var(--text-soft); white-space: normal; }
+
+  /* ── Badge de rol (vista filtrada por equipo) ── */
+  .rol-badge {
+    font-family: 'Roboto Mono', monospace;
+    font-size: .62rem; font-weight: 600; letter-spacing: .04em;
+    padding: 3px 10px;
+    border-radius: 2px;
+    display: inline-block;
+    color: white;
+  }
+  .rol-juega    { background: var(--imef-verde); }
+  .rol-observa  { background: var(--imef-purpura); }
+  .rol-arbitra  { background: var(--imef-naranja); }
+  .rol-descansa { background: var(--soft); color: var(--text-soft); }
+  .rol-vacio    { background: var(--soft); color: var(--text-soft); }
+
+  .footer {
+    margin-top: 48px; padding-top: 16px;
+    border-top: 2px solid var(--ink);
+    font-family: 'Roboto Mono', monospace;
+    font-size: .6rem; color: var(--text-soft);
+    letter-spacing: .07em; text-align: center; line-height: 1.9;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">IMEF · Handball</div>
+  <div class="brand-sub">Instituto Modelo de Educación Física · Recursos Didácticos Digitales</div>
+  <a class="back-link" href="index.html">&larr; Volver al inicio</a>
+</div>
+
+<div class="wrap">
+
+  <div class="section-label">Sport 2026</div>
+  <p class="lead">Sport de Handball — lógica de rotación y fixture por turno. Cada fecha: 2 zonas de 4 equipos, todos contra todos (12 partidos, 1 sola cancha).</p>
+
+  <div class="info-box">
+    <dl>
+      <dt>Equipos por zona</dt>
+      <dd>Cada color se divide en 1 y 2 al llegar. Zona 1 = Rojo 1, Azul 1, Verde 1, Amarillo 1. Zona 2 = Rojo 2, Azul 2, Verde 2, Amarillo 2.</dd>
+      <dt>Cancha</dt>
+      <dd>1 sola cancha. Los partidos se alternan: Zona 1, Zona 2, Zona 1, Zona 2… (12 turnos en total).</dd>
+      <dt>Observan</dt>
+      <dd>Mientras juega un partido, los 2 equipos de la misma zona que no juegan ese turno observan.</dd>
+      <dt>Descansan</dt>
+      <dd>De la zona contraria, los 2 equipos que jugaron su partido inmediato anterior descansan.</dd>
+      <dt>Arbitran / Mesa</dt>
+      <dd>De la zona contraria, los 2 equipos que quedaron libres en su partido inmediato anterior arbitran o hacen de mesa.</dd>
+    </dl>
+  </div>
+
+  <div class="vista-tabs">
+    <button class="tab activo" id="tab-4to" onclick="setVista('4to')">4to TM</button>
+    <button class="tab" id="tab-2do" onclick="setVista('2do')">2do TM</button>
+  </div>
+
+  <div class="filtro-label">Filtrar por equipo — ver quién juega, descansa, observa o arbitra/hace mesa</div>
+  <div class="filtro-row" id="filtro-row">
+    <button class="chip activo" data-equipo="todos" onclick="setFiltro('todos')">Todos</button>
+    <button class="chip" data-equipo="Rojo 1" onclick="setFiltro('Rojo 1')">Rojo 1</button>
+    <button class="chip" data-equipo="Rojo 2" onclick="setFiltro('Rojo 2')">Rojo 2</button>
+    <button class="chip" data-equipo="Azul 1" onclick="setFiltro('Azul 1')">Azul 1</button>
+    <button class="chip" data-equipo="Azul 2" onclick="setFiltro('Azul 2')">Azul 2</button>
+    <button class="chip" data-equipo="Verde 1" onclick="setFiltro('Verde 1')">Verde 1</button>
+    <button class="chip" data-equipo="Verde 2" onclick="setFiltro('Verde 2')">Verde 2</button>
+    <button class="chip" data-equipo="Amarillo 1" onclick="setFiltro('Amarillo 1')">Amarillo 1</button>
+    <button class="chip" data-equipo="Amarillo 2" onclick="setFiltro('Amarillo 2')">Amarillo 2</button>
+  </div>
+
+  <!-- ── 4to - Turno Mañana ── -->
+  <div class="vista activa" id="vista-4to">
+    <div class="zona-tag">4to · Turno Mañana — Zona 1: 2do/4to año · Zona 2: 2do/4to año</div>
+    <div class="table-scroll" id="tabla-4to"></div>
+  </div>
+
+  <!-- ── 2do - Turno Mañana ── -->
+  <div class="vista" id="vista-2do">
+    <div class="zona-tag">2do · Turno Mañana — Zona 1: 2do/4to año · Zona 2: 2do/4to año</div>
+    <div class="table-scroll" id="tabla-2do"></div>
+  </div>
+
+  <div class="footer">
+    IMEF · Instituto Modelo de Educación Física<br>
+    Medrano 155, Banfield, Buenos Aires · 4202-0665 · imef.informacion@gmail.com
+  </div>
+
+</div>
+
+<script>
+// N°, zona (1|2), hora, equipoA, equipoB, obs1, obs2, desc1, desc2, arb1, arb2
+const partidos4to = [
+  [1,1,'','Rojo 1','Azul 1','Verde 1','Amarillo 1','—','—','Verde 2','Amarillo 2'],
+  [2,2,'','Rojo 2','Azul 2','Verde 2','Amarillo 2','Rojo 1','Azul 1','Verde 1','Amarillo 1'],
+  [3,1,'','Verde 1','Amarillo 1','Rojo 1','Azul 1','Rojo 2','Azul 2','Verde 2','Amarillo 2'],
+  [4,2,'','Verde 2','Amarillo 2','Rojo 2','Azul 2','Verde 1','Amarillo 1','Rojo 1','Azul 1'],
+  [5,1,'','Rojo 1','Verde 1','Azul 1','Amarillo 1','Verde 2','Amarillo 2','Rojo 2','Azul 2'],
+  [6,2,'','Rojo 2','Verde 2','Azul 2','Amarillo 2','Rojo 1','Verde 1','Azul 1','Amarillo 1'],
+  [7,1,'','Azul 1','Amarillo 1','Rojo 1','Verde 1','Rojo 2','Verde 2','Azul 2','Amarillo 2'],
+  [8,2,'','Azul 2','Amarillo 2','Rojo 2','Verde 2','Azul 1','Amarillo 1','Rojo 1','Verde 1'],
+  [9,1,'','Rojo 1','Amarillo 1','Azul 1','Verde 1','Azul 2','Amarillo 2','Rojo 2','Verde 2'],
+  [10,2,'','Rojo 2','Amarillo 2','Azul 2','Verde 2','Rojo 1','Amarillo 1','Azul 1','Verde 1'],
+  [11,1,'','Azul 1','Verde 1','Rojo 1','Amarillo 1','Rojo 2','Amarillo 2','Azul 2','Verde 2'],
+  [12,2,'','Azul 2','Verde 2','Rojo 2','Amarillo 2','Azul 1','Verde 1','Rojo 1','Amarillo 1'],
+];
+
+const partidos2do = [
+  [1,1,'','Rojo 1','Azul 1','Verde 1','Amarillo 1','—','—','Verde 2','Amarillo 2'],
+  [2,2,'','Rojo 2','Azul 2','Verde 2','Amarillo 2','Rojo 1','Azul 1','Verde 1','Amarillo 1'],
+  [3,1,'','Verde 1','Amarillo 1','Rojo 1','Azul 1','Rojo 2','Azul 2','Verde 2','Amarillo 2'],
+  [4,2,'','Verde 2','Amarillo 2','Rojo 2','Azul 2','Verde 1','Amarillo 1','Rojo 1','Azul 1'],
+  [5,1,'','Rojo 1','Verde 1','Azul 1','Amarillo 1','Verde 2','Amarillo 2','Rojo 2','Azul 2'],
+  [6,2,'','Rojo 2','Verde 2','Azul 2','Amarillo 2','Rojo 1','Verde 1','Azul 1','Amarillo 1'],
+  [7,1,'','Azul 1','Amarillo 1','Rojo 1','Verde 1','Rojo 2','Verde 2','Azul 2','Amarillo 2'],
+  [8,2,'','Azul 2','Amarillo 2','Rojo 2','Verde 2','Azul 1','Amarillo 1','Rojo 1','Verde 1'],
+  [9,1,'','Rojo 1','Amarillo 1','Azul 1','Verde 1','Azul 2','Amarillo 2','Rojo 2','Verde 2'],
+  [10,2,'','Rojo 2','Amarillo 2','Azul 2','Verde 2','Rojo 1','Amarillo 1','Azul 1','Verde 1'],
+  [11,1,'','Azul 1','Verde 1','Rojo 1','Amarillo 1','Rojo 2','Amarillo 2','Azul 2','Verde 2'],
+  [12,2,'','Azul 2','Verde 2','Rojo 2','Amarillo 2','Azul 1','Verde 1','Rojo 1','Amarillo 1'],
+];
+
+let filtroEquipo = 'todos';
+
+// Determina el rol de un equipo puntual en un turno dado
+function rolDeEquipo(fila, equipo) {
+  const [n, zona, hora, eqA, eqB, obs1, obs2, desc1, desc2, arb1, arb2] = fila;
+  if (eqA === equipo) return { rol: 'Juega',          detalle: 'vs ' + eqB,        tipo: 'juega' };
+  if (eqB === equipo) return { rol: 'Juega',          detalle: 'vs ' + eqA,        tipo: 'juega' };
+  if (obs1 === equipo || obs2 === equipo) return { rol: 'Observa',         detalle: eqA + ' vs ' + eqB, tipo: 'observa' };
+  if (desc1 === equipo || desc2 === equipo) return { rol: 'Descansa',        detalle: '—',                tipo: 'descansa' };
+  if (arb1 === equipo || arb2 === equipo) return { rol: 'Arbitra / Mesa',  detalle: eqA + ' vs ' + eqB, tipo: 'arbitra' };
+  return { rol: '—', detalle: '—', tipo: 'vacio' };
+}
+
+function tablaCompletaHTML(datos) {
+  const filas = datos.map(f => {
+    const [n, zona, hora, eqA, eqB, obs1, obs2, desc1, desc2, arb1, arb2] = f;
+    const zonaClass = zona === 1 ? 'zona1' : 'zona2';
+    return `<tr>
+      <td class="num">${n}</td>
+      <td class="${zonaClass}">Zona ${zona}</td>
+      <td class="dim">${hora || '—'}</td>
+      <td class="equipo">${eqA}</td>
+      <td class="equipo">${eqB}</td>
+      <td>${obs1}</td><td>${obs2}</td>
+      <td>${desc1}</td><td>${desc2}</td>
+      <td>${arb1}</td><td>${arb2}</td>
+    </tr>`;
+  }).join('');
+  return `<table class="completa">
+    <thead>
+      <tr>
+        <th rowspan="2">N°</th>
+        <th rowspan="2">Zona</th>
+        <th rowspan="2">Hora</th>
+        <th rowspan="2">Equipo A</th>
+        <th rowspan="2">Equipo B</th>
+        <th colspan="2">Observan (misma zona)</th>
+        <th colspan="2">Descansan (zona contraria)</th>
+        <th colspan="2">Arbitran / Mesa (zona contraria)</th>
+      </tr>
+      <tr class="grp">
+        <th>Eq. 1</th><th>Eq. 2</th>
+        <th>Eq. 1</th><th>Eq. 2</th>
+        <th>Eq. 1</th><th>Eq. 2</th>
+      </tr>
+    </thead>
+    <tbody>${filas}</tbody>
+  </table>`;
+}
+
+function tablaCondensadaHTML(datos, equipo) {
+  const filas = datos.map(f => {
+    const [n, zona, hora] = f;
+    const zonaClass = zona === 1 ? 'zona1' : 'zona2';
+    const info = rolDeEquipo(f, equipo);
+    return `<tr>
+      <td class="num">${n}</td>
+      <td class="${zonaClass}">Zona ${zona}</td>
+      <td class="dim">${hora || '—'}</td>
+      <td><span class="rol-badge rol-${info.tipo}">${info.rol}</span></td>
+      <td class="detalle">${info.detalle}</td>
+    </tr>`;
+  }).join('');
+  return `<table class="condensada">
+    <thead>
+      <tr>
+        <th>N°</th>
+        <th>Zona en cancha</th>
+        <th>Hora</th>
+        <th>Rol de ${equipo}</th>
+        <th>Detalle</th>
+      </tr>
+    </thead>
+    <tbody>${filas}</tbody>
+  </table>`;
+}
+
+function renderVista(datos, containerId, filtro) {
+  const html = filtro === 'todos' ? tablaCompletaHTML(datos) : tablaCondensadaHTML(datos, filtro);
+  document.getElementById(containerId).innerHTML = html;
+}
+
+function refrescarVistas() {
+  renderVista(partidos4to, 'tabla-4to', filtroEquipo);
+  renderVista(partidos2do, 'tabla-2do', filtroEquipo);
+}
+
+function setFiltro(equipo) {
+  filtroEquipo = equipo;
+  document.querySelectorAll('.chip').forEach(c => c.classList.toggle('activo', c.dataset.equipo === equipo));
+  refrescarVistas();
+}
+
+function setVista(v) {
+  document.querySelectorAll('.vista').forEach(el => el.classList.remove('activa'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('activo'));
+  document.getElementById('vista-' + v).classList.add('activa');
+  document.getElementById('tab-' + v).classList.add('activo');
+}
+
+refrescarVistas();
+</script>
+
+</body>
+</html>
