@@ -17,7 +17,6 @@
     --imef-naranja:  #C86500;
     --imef-amarillo: #B8960B;
     --accent:       #B0121F;
-    --danger:       #CC1B2C;
     --ink:          #142A4D;
     --text:         #142A4D;
     --text-soft:    #5C6C82;
@@ -68,7 +67,7 @@
   }
   .back-link:hover { color: var(--accent); }
 
-  .wrap { max-width: 900px; margin: 0 auto; padding: 32px 20px 60px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; }
 
   .section-label {
     font-family: 'Roboto Mono', monospace;
@@ -102,7 +101,7 @@
   .tab.activo { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 2px 8px rgba(20,42,77,0.08); }
   .tab:hover:not(.activo) { background: var(--soft); transform: translateY(-2px); }
 
-  /* ── Filtro por equipo ── */
+  /* ── Filtros ── */
   .filtro-label {
     font-family: 'Roboto Mono', monospace;
     font-size: .6rem; letter-spacing: .08em; text-transform: uppercase;
@@ -122,11 +121,12 @@
   }
   .chip:hover:not(.activo) { background: var(--soft); transform: translateY(-1px); }
   .chip.activo { color: white; box-shadow: 0 2px 8px rgba(20,42,77,0.08); }
-  .chip[data-equipo="todos"].activo   { background: var(--ink);           border-color: var(--ink); }
-  .chip[data-equipo^="Rojo"].activo     { background: var(--imef-rojo);     border-color: var(--imef-rojo); }
-  .chip[data-equipo^="Azul"].activo     { background: var(--imef-azul);     border-color: var(--imef-azul); }
-  .chip[data-equipo^="Verde"].activo    { background: var(--imef-verde);    border-color: var(--imef-verde); }
-  .chip[data-equipo^="Amarillo"].activo { background: var(--imef-amarillo); border-color: var(--imef-amarillo); }
+  .chip[data-equipo="todos"].activo    { background: var(--ink);            border-color: var(--ink); }
+  .chip[data-equipo^="Rojo"].activo    { background: var(--imef-rojo);      border-color: var(--imef-rojo); }
+  .chip[data-equipo^="Azul"].activo    { background: var(--imef-azul);      border-color: var(--imef-azul); }
+  .chip[data-equipo^="Verde"].activo   { background: var(--imef-verde);     border-color: var(--imef-verde); }
+  .chip[data-equipo^="Amarillo"].activo{ background: var(--imef-amarillo);  border-color: var(--imef-amarillo); }
+  .chip[data-turno].activo             { background: var(--imef-purpura);   border-color: var(--imef-purpura); }
 
   .vista { display: none; }
   .vista.activa { display: block; }
@@ -137,7 +137,7 @@
     color: var(--text-soft); margin-bottom: 12px;
   }
 
-  /* ── Info box: lógica de rotación ── */
+  /* ── Info box ── */
   .info-box {
     background: var(--bg-panel);
     border: 2px solid var(--ink);
@@ -147,50 +147,52 @@
     font-size: .78rem;
     line-height: 1.6;
   }
+  .info-box dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; }
   .info-box dt {
     font-family: 'Roboto Mono', monospace;
     font-size: .62rem; letter-spacing: .06em; text-transform: uppercase;
-    color: var(--accent); font-weight: 500;
-    margin-top: 8px;
+    font-weight: 600; white-space: nowrap;
+    padding-top: 2px;
   }
-  .info-box dt:first-child { margin-top: 0; }
   .info-box dd { color: var(--text-soft); }
+  .info-box dt.col-partido  { color: var(--imef-verde); }
+  .info-box dt.col-obs      { color: var(--imef-purpura); }
+  .info-box dt.col-plan     { color: var(--imef-naranja); }
+  .info-box dt.col-libre    { color: var(--text-soft); }
 
-  /* ── Tabla de partidos ── */
-  .table-scroll { overflow-x: auto; border: 2px solid var(--ink); border-radius: 2px; background: var(--bg-panel); }
-  table {
-    width: 100%;
-    border-collapse: collapse; font-size: .76rem;
-  }
-  table.completa { min-width: 760px; }
-  table.condensada { min-width: 480px; }
+  /* ── Tabla completa ── */
+  .table-wrap { overflow-x: auto; border: 2px solid var(--ink); border-radius: 2px; background: var(--bg-panel); }
+  table { width: 100%; border-collapse: collapse; font-size: .76rem; }
+  table.completa  { min-width: 680px; }
+  table.condensada{ min-width: 400px; }
   thead th {
     font-family: 'Roboto Mono', monospace;
     font-size: .6rem; letter-spacing: .05em; text-transform: uppercase;
     font-weight: 500; text-align: center;
     background: var(--ink); color: white;
-    padding: 8px 6px;
+    padding: 8px 8px;
   }
-  thead tr.grp th {
-    background: var(--accent);
-    font-size: .58rem;
-  }
+  thead th.col-partido { background: var(--imef-verde); }
+  thead th.col-obs     { background: var(--imef-purpura); }
+  thead th.col-plan    { background: var(--imef-naranja); }
+  thead th.col-libre   { background: var(--text-soft); }
   tbody td {
     text-align: center;
-    padding: 7px 6px;
+    padding: 7px 8px;
     border-bottom: 1px solid var(--soft);
     white-space: nowrap;
   }
   tbody tr:nth-child(even) { background: var(--bg-raised); }
   tbody tr:hover { background: var(--soft); }
-  td.num { font-family: 'Roboto Mono', monospace; color: var(--text-soft); font-weight: 500; }
-  td.zona1 { color: var(--imef-azul); font-weight: 600; }
-  td.zona2 { color: var(--imef-verde); font-weight: 600; }
-  td.equipo { font-weight: 700; }
-  td.dim { color: var(--text-soft); }
+  td.num   { font-family: 'Roboto Mono', monospace; color: var(--text-soft); font-weight: 500; }
+  td.dim   { color: var(--text-soft); }
   td.detalle { color: var(--text-soft); white-space: normal; }
+  td.col-partido { font-weight: 700; color: var(--imef-verde); }
+  td.col-obs     { color: var(--imef-purpura); font-weight: 600; }
+  td.col-plan    { color: var(--imef-naranja); font-weight: 600; }
+  td.col-libre   { color: var(--text-soft); }
 
-  /* ── Badge de rol (vista filtrada por equipo) ── */
+  /* ── Badge de rol ── */
   .rol-badge {
     font-family: 'Roboto Mono', monospace;
     font-size: .62rem; font-weight: 600; letter-spacing: .04em;
@@ -199,11 +201,54 @@
     display: inline-block;
     color: white;
   }
-  .rol-juega    { background: var(--imef-verde); }
-  .rol-observa  { background: var(--imef-purpura); }
-  .rol-arbitra  { background: var(--imef-naranja); }
-  .rol-descansa { background: var(--soft); color: var(--text-soft); }
-  .rol-vacio    { background: var(--soft); color: var(--text-soft); }
+  .rol-juega   { background: var(--imef-verde); }
+  .rol-observa { background: var(--imef-purpura); }
+  .rol-arbitra { background: var(--imef-naranja); }
+  .rol-libre   { background: var(--soft); color: var(--text-soft); }
+  .rol-vacio   { background: var(--soft); color: var(--text-soft); }
+
+  /* ── Turno card (vista por turno) ── */
+  .turno-card {
+    background: var(--bg-panel);
+    border: 2px solid var(--ink);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .turno-card-header {
+    font-family: 'Roboto Mono', monospace;
+    font-size: .7rem; font-weight: 500; letter-spacing: .1em;
+    text-transform: uppercase;
+    background: var(--ink); color: white;
+    padding: 10px 18px;
+  }
+  .turno-roles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  .role-item {
+    padding: 18px 16px;
+    border-right: 1px solid var(--soft);
+    border-bottom: 1px solid var(--soft);
+  }
+  .role-item:last-child { border-right: none; }
+  .role-label {
+    display: block;
+    font-family: 'Roboto Mono', monospace;
+    font-size: .58rem; letter-spacing: .08em; text-transform: uppercase;
+    font-weight: 600; margin-bottom: 10px;
+  }
+  .role-match {
+    display: block;
+    font-size: .92rem; font-weight: 700; line-height: 1.35;
+  }
+  .role-item.role-partido .role-label,
+  .role-item.role-partido .role-match { color: var(--imef-verde); }
+  .role-item.role-obs .role-label,
+  .role-item.role-obs .role-match     { color: var(--imef-purpura); }
+  .role-item.role-plan .role-label,
+  .role-item.role-plan .role-match    { color: var(--imef-naranja); }
+  .role-item.role-libre .role-label,
+  .role-item.role-libre .role-match   { color: var(--text-soft); }
 
   .footer {
     margin-top: 48px; padding-top: 16px;
@@ -225,20 +270,18 @@
 <div class="wrap">
 
   <div class="section-label">Sport 2026</div>
-  <p class="lead">Sport de Handball — lógica de rotación y fixture por turno. Cada fecha: 2 zonas de 4 equipos, todos contra todos (12 partidos, 1 sola cancha).</p>
+  <p class="lead">Sport de Handball — fixture y roles por turno. 8 equipos, 4 colores, 12 turnos. En cada turno un enfrentamiento juega, otro observa, otro hace planilla y arbitraje, y otro queda libre.</p>
 
   <div class="info-box">
     <dl>
-      <dt>Equipos por zona</dt>
-      <dd>Cada color se divide en 1 y 2 al llegar. Zona 1 = Rojo 1, Azul 1, Verde 1, Amarillo 1. Zona 2 = Rojo 2, Azul 2, Verde 2, Amarillo 2.</dd>
-      <dt>Cancha</dt>
-      <dd>1 sola cancha. Los partidos se alternan: Zona 1, Zona 2, Zona 1, Zona 2… (12 turnos en total).</dd>
-      <dt>Observan</dt>
-      <dd>Mientras juega un partido, los 2 equipos de la misma zona que no juegan ese turno observan.</dd>
-      <dt>Descansan</dt>
-      <dd>De la zona contraria, los 2 equipos que jugaron su partido inmediato anterior descansan.</dd>
-      <dt>Arbitran / Mesa</dt>
-      <dd>De la zona contraria, los 2 equipos que quedaron libres en su partido inmediato anterior arbitran o hacen de mesa.</dd>
+      <dt class="col-partido">Partido</dt>
+      <dd>El enfrentamiento que se juega en ese turno (ambos equipos compiten en cancha).</dd>
+      <dt class="col-obs">Observación</dt>
+      <dd>El enfrentamiento que oficia como observación del partido en cancha.</dd>
+      <dt class="col-plan">Planilla / Arbitraje</dt>
+      <dd>El enfrentamiento a cargo de la planilla y el arbitraje del partido.</dd>
+      <dt class="col-libre">Libre</dt>
+      <dd>El enfrentamiento que queda libre ese turno (ambos equipos descansan).</dd>
     </dl>
   </div>
 
@@ -247,29 +290,45 @@
     <button class="tab" id="tab-2do" onclick="setVista('2do')">2do TM</button>
   </div>
 
-  <div class="filtro-label">Filtrar por equipo — ver quién juega, descansa, observa o arbitra/hace mesa</div>
-  <div class="filtro-row" id="filtro-row">
-    <button class="chip activo" data-equipo="todos" onclick="setFiltro('todos')">Todos</button>
-    <button class="chip" data-equipo="Rojo 1" onclick="setFiltro('Rojo 1')">Rojo 1</button>
-    <button class="chip" data-equipo="Rojo 2" onclick="setFiltro('Rojo 2')">Rojo 2</button>
-    <button class="chip" data-equipo="Azul 1" onclick="setFiltro('Azul 1')">Azul 1</button>
-    <button class="chip" data-equipo="Azul 2" onclick="setFiltro('Azul 2')">Azul 2</button>
-    <button class="chip" data-equipo="Verde 1" onclick="setFiltro('Verde 1')">Verde 1</button>
-    <button class="chip" data-equipo="Verde 2" onclick="setFiltro('Verde 2')">Verde 2</button>
-    <button class="chip" data-equipo="Amarillo 1" onclick="setFiltro('Amarillo 1')">Amarillo 1</button>
-    <button class="chip" data-equipo="Amarillo 2" onclick="setFiltro('Amarillo 2')">Amarillo 2</button>
+  <div class="filtro-label">Filtrar por equipo — ver rol en cada turno</div>
+  <div class="filtro-row">
+    <button class="chip activo" data-equipo="todos"      onclick="setFiltroEquipo('todos')">Todos</button>
+    <button class="chip" data-equipo="Rojo 1"            onclick="setFiltroEquipo('Rojo 1')">Rojo 1</button>
+    <button class="chip" data-equipo="Rojo 2"            onclick="setFiltroEquipo('Rojo 2')">Rojo 2</button>
+    <button class="chip" data-equipo="Azul 1"            onclick="setFiltroEquipo('Azul 1')">Azul 1</button>
+    <button class="chip" data-equipo="Azul 2"            onclick="setFiltroEquipo('Azul 2')">Azul 2</button>
+    <button class="chip" data-equipo="Verde 1"           onclick="setFiltroEquipo('Verde 1')">Verde 1</button>
+    <button class="chip" data-equipo="Verde 2"           onclick="setFiltroEquipo('Verde 2')">Verde 2</button>
+    <button class="chip" data-equipo="Amarillo 1"        onclick="setFiltroEquipo('Amarillo 1')">Amarillo 1</button>
+    <button class="chip" data-equipo="Amarillo 2"        onclick="setFiltroEquipo('Amarillo 2')">Amarillo 2</button>
   </div>
 
-  <!-- ── 4to - Turno Mañana ── -->
+  <div class="filtro-label">Vista por turno — detalle de un turno específico</div>
+  <div class="filtro-row">
+    <button class="chip" data-turno="1"  onclick="setFiltroTurno(1)">T1</button>
+    <button class="chip" data-turno="2"  onclick="setFiltroTurno(2)">T2</button>
+    <button class="chip" data-turno="3"  onclick="setFiltroTurno(3)">T3</button>
+    <button class="chip" data-turno="4"  onclick="setFiltroTurno(4)">T4</button>
+    <button class="chip" data-turno="5"  onclick="setFiltroTurno(5)">T5</button>
+    <button class="chip" data-turno="6"  onclick="setFiltroTurno(6)">T6</button>
+    <button class="chip" data-turno="7"  onclick="setFiltroTurno(7)">T7</button>
+    <button class="chip" data-turno="8"  onclick="setFiltroTurno(8)">T8</button>
+    <button class="chip" data-turno="9"  onclick="setFiltroTurno(9)">T9</button>
+    <button class="chip" data-turno="10" onclick="setFiltroTurno(10)">T10</button>
+    <button class="chip" data-turno="11" onclick="setFiltroTurno(11)">T11</button>
+    <button class="chip" data-turno="12" onclick="setFiltroTurno(12)">T12</button>
+  </div>
+
+  <!-- ── 4to TM ── -->
   <div class="vista activa" id="vista-4to">
-    <div class="zona-tag">4to · Turno Mañana — Zona 1: 2do/4to año · Zona 2: 2do/4to año</div>
-    <div class="table-scroll" id="tabla-4to"></div>
+    <div class="zona-tag">4to · Turno Mañana</div>
+    <div id="tabla-4to"></div>
   </div>
 
-  <!-- ── 2do - Turno Mañana ── -->
+  <!-- ── 2do TM ── -->
   <div class="vista" id="vista-2do">
-    <div class="zona-tag">2do · Turno Mañana — Zona 1: 2do/4to año · Zona 2: 2do/4to año</div>
-    <div class="table-scroll" id="tabla-2do"></div>
+    <div class="zona-tag">2do · Turno Mañana</div>
+    <div id="tabla-2do"></div>
   </div>
 
   <div class="footer">
@@ -280,127 +339,167 @@
 </div>
 
 <script>
-// N°, zona (1|2), hora, equipoA, equipoB, obs1, obs2, desc1, desc2, arb1, arb2
-const partidos4to = [
-  [1,1,'','Rojo 1','Azul 1','Verde 1','Amarillo 1','Verde 2','Azul 2','Rojo 2','Amarillo 2'],
-  [2,2,'','Rojo 2','Azul 2','Verde 2','Amarillo 2','Rojo 1','Azul 1','Verde 1','Amarillo 1'],
-  [3,1,'','Verde 1','Amarillo 1','Rojo 1','Azul 1','Rojo 2','Azul 2','Verde 2','Amarillo 2'],
-  [4,2,'','Verde 2','Amarillo 2','Rojo 2','Azul 2','Verde 1','Amarillo 1','Rojo 1','Azul 1'],
-  [5,1,'','Rojo 1','Verde 1','Azul 1','Amarillo 1','Verde 2','Amarillo 2','Rojo 2','Azul 2'],
-  [6,2,'','Rojo 2','Verde 2','Azul 2','Amarillo 2','Rojo 1','Verde 1','Azul 1','Amarillo 1'],
-  [7,1,'','Azul 1','Amarillo 1','Rojo 1','Verde 1','Rojo 2','Verde 2','Azul 2','Amarillo 2'],
-  [8,2,'','Azul 2','Amarillo 2','Rojo 2','Verde 2','Azul 1','Amarillo 1','Rojo 1','Verde 1'],
-  [9,1,'','Rojo 1','Amarillo 1','Azul 1','Verde 1','Azul 2','Amarillo 2','Rojo 2','Verde 2'],
-  [10,2,'','Rojo 2','Amarillo 2','Azul 2','Verde 2','Rojo 1','Amarillo 1','Azul 1','Verde 1'],
-  [11,1,'','Azul 1','Verde 1','Rojo 1','Amarillo 1','Rojo 2','Amarillo 2','Azul 2','Verde 2'],
-  [12,2,'','Azul 2','Verde 2','Rojo 2','Amarillo 2','Azul 1','Verde 1','Rojo 1','Amarillo 1'],
+// [turno, hora, partido, observacion, planillaArbitraje, libre]
+const turnos4to = [
+  [ 1,'','Rojo 1 vs Azul 1',      'Verde 1 vs Amarillo 1', 'Verde 2 vs Amarillo 2', 'Rojo 2 vs Azul 2'    ],
+  [ 2,'','Rojo 2 vs Azul 2',      'Verde 2 vs Amarillo 2', 'Verde 1 vs Amarillo 1', 'Rojo 1 vs Azul 1'    ],
+  [ 3,'','Verde 1 vs Amarillo 1', 'Rojo 1 vs Azul 1',      'Rojo 2 vs Azul 2',      'Verde 2 vs Amarillo 2'],
+  [ 4,'','Verde 2 vs Amarillo 2', 'Rojo 2 vs Azul 2',      'Rojo 1 vs Azul 1',      'Verde 1 vs Amarillo 1'],
+  [ 5,'','Rojo 1 vs Verde 1',     'Amarillo 1 vs Azul 1',  'Amarillo 2 vs Azul 2',  'Rojo 2 vs Verde 2'   ],
+  [ 6,'','Rojo 2 vs Verde 2',     'Amarillo 2 vs Azul 2',  'Amarillo 1 vs Azul 1',  'Rojo 1 vs Verde 1'   ],
+  [ 7,'','Amarillo 1 vs Azul 1',  'Rojo 1 vs Verde 1',     'Rojo 2 vs Verde 2',     'Amarillo 2 vs Azul 2' ],
+  [ 8,'','Amarillo 2 vs Azul 2',  'Rojo 2 vs Verde 2',     'Rojo 1 vs Verde 1',     'Amarillo 1 vs Azul 1' ],
+  [ 9,'','Rojo 1 vs Amarillo 1',  'Azul 1 vs Verde 1',     'Azul 2 vs Verde 2',     'Rojo 2 vs Amarillo 2' ],
+  [10,'','Rojo 2 vs Amarillo 2',  'Azul 2 vs Verde 2',     'Azul 1 vs Verde 1',     'Rojo 1 vs Amarillo 1' ],
+  [11,'','Azul 1 vs Verde 1',     'Rojo 1 vs Amarillo 1',  'Rojo 2 vs Amarillo 2',  'Azul 2 vs Verde 2'   ],
+  [12,'','Azul 2 vs Verde 2',     'Rojo 2 vs Amarillo 2',  'Rojo 1 vs Amarillo 1',  'Azul 1 vs Verde 1'   ],
 ];
 
-const partidos2do = [
-  [1,1,'','Rojo 1','Azul 1','Verde 1','Amarillo 1','Verde 2','Azul 2','Rojo 2','Amarillo 2'],
-  [2,2,'','Rojo 2','Azul 2','Verde 2','Amarillo 2','Rojo 1','Azul 1','Verde 1','Amarillo 1'],
-  [3,1,'','Verde 1','Amarillo 1','Rojo 1','Azul 1','Rojo 2','Azul 2','Verde 2','Amarillo 2'],
-  [4,2,'','Verde 2','Amarillo 2','Rojo 2','Azul 2','Verde 1','Amarillo 1','Rojo 1','Azul 1'],
-  [5,1,'','Rojo 1','Verde 1','Azul 1','Amarillo 1','Verde 2','Amarillo 2','Rojo 2','Azul 2'],
-  [6,2,'','Rojo 2','Verde 2','Azul 2','Amarillo 2','Rojo 1','Verde 1','Azul 1','Amarillo 1'],
-  [7,1,'','Azul 1','Amarillo 1','Rojo 1','Verde 1','Rojo 2','Verde 2','Azul 2','Amarillo 2'],
-  [8,2,'','Azul 2','Amarillo 2','Rojo 2','Verde 2','Azul 1','Amarillo 1','Rojo 1','Verde 1'],
-  [9,1,'','Rojo 1','Amarillo 1','Azul 1','Verde 1','Azul 2','Amarillo 2','Rojo 2','Verde 2'],
-  [10,2,'','Rojo 2','Amarillo 2','Azul 2','Verde 2','Rojo 1','Amarillo 1','Azul 1','Verde 1'],
-  [11,1,'','Azul 1','Verde 1','Rojo 1','Amarillo 1','Rojo 2','Amarillo 2','Azul 2','Verde 2'],
-  [12,2,'','Azul 2','Verde 2','Rojo 2','Amarillo 2','Azul 1','Verde 1','Rojo 1','Amarillo 1'],
+const turnos2do = [
+  [ 1,'','Rojo 1 vs Azul 1',      'Verde 1 vs Amarillo 1', 'Verde 2 vs Amarillo 2', 'Rojo 2 vs Azul 2'    ],
+  [ 2,'','Rojo 2 vs Azul 2',      'Verde 2 vs Amarillo 2', 'Verde 1 vs Amarillo 1', 'Rojo 1 vs Azul 1'    ],
+  [ 3,'','Verde 1 vs Amarillo 1', 'Rojo 1 vs Azul 1',      'Rojo 2 vs Azul 2',      'Verde 2 vs Amarillo 2'],
+  [ 4,'','Verde 2 vs Amarillo 2', 'Rojo 2 vs Azul 2',      'Rojo 1 vs Azul 1',      'Verde 1 vs Amarillo 1'],
+  [ 5,'','Rojo 1 vs Verde 1',     'Amarillo 1 vs Azul 1',  'Amarillo 2 vs Azul 2',  'Rojo 2 vs Verde 2'   ],
+  [ 6,'','Rojo 2 vs Verde 2',     'Amarillo 2 vs Azul 2',  'Amarillo 1 vs Azul 1',  'Rojo 1 vs Verde 1'   ],
+  [ 7,'','Amarillo 1 vs Azul 1',  'Rojo 1 vs Verde 1',     'Rojo 2 vs Verde 2',     'Amarillo 2 vs Azul 2' ],
+  [ 8,'','Amarillo 2 vs Azul 2',  'Rojo 2 vs Verde 2',     'Rojo 1 vs Verde 1',     'Amarillo 1 vs Azul 1' ],
+  [ 9,'','Rojo 1 vs Amarillo 1',  'Azul 1 vs Verde 1',     'Azul 2 vs Verde 2',     'Rojo 2 vs Amarillo 2' ],
+  [10,'','Rojo 2 vs Amarillo 2',  'Azul 2 vs Verde 2',     'Azul 1 vs Verde 1',     'Rojo 1 vs Amarillo 1' ],
+  [11,'','Azul 1 vs Verde 1',     'Rojo 1 vs Amarillo 1',  'Rojo 2 vs Amarillo 2',  'Azul 2 vs Verde 2'   ],
+  [12,'','Azul 2 vs Verde 2',     'Rojo 2 vs Amarillo 2',  'Rojo 1 vs Amarillo 1',  'Azul 1 vs Verde 1'   ],
 ];
 
 let filtroEquipo = 'todos';
+let filtroTurno  = null;
 
-// Determina el rol de un equipo puntual en un turno dado
-function rolDeEquipo(fila, equipo) {
-  const [n, zona, hora, eqA, eqB, obs1, obs2, desc1, desc2, arb1, arb2] = fila;
-  if (eqA === equipo) return { rol: 'Juega',          detalle: 'vs ' + eqB,        tipo: 'juega' };
-  if (eqB === equipo) return { rol: 'Juega',          detalle: 'vs ' + eqA,        tipo: 'juega' };
-  if (obs1 === equipo || obs2 === equipo) return { rol: 'Observa',         detalle: eqA + ' vs ' + eqB, tipo: 'observa' };
-  if (desc1 === equipo || desc2 === equipo) return { rol: 'Descansa',        detalle: '—',                tipo: 'descansa' };
-  if (arb1 === equipo || arb2 === equipo) return { rol: 'Arbitra / Mesa',  detalle: eqA + ' vs ' + eqB, tipo: 'arbitra' };
+function eqInMatch(match, eq) {
+  return match.split(' vs ').map(s => s.trim()).includes(eq);
+}
+
+function rolDeEquipo(turnoData, equipo) {
+  const [t, h, partido, obs, plan, libre] = turnoData;
+  if (eqInMatch(partido, equipo)) {
+    const parts = partido.split(' vs ').map(s => s.trim());
+    return { rol: 'Juega', detalle: 'vs ' + (parts[0] === equipo ? parts[1] : parts[0]), tipo: 'juega' };
+  }
+  if (eqInMatch(obs, equipo)) {
+    return { rol: 'Observa', detalle: partido, tipo: 'observa' };
+  }
+  if (eqInMatch(plan, equipo)) {
+    return { rol: 'Planilla / Arb.', detalle: partido, tipo: 'arbitra' };
+  }
+  if (eqInMatch(libre, equipo)) {
+    const parts = libre.split(' vs ').map(s => s.trim());
+    return { rol: 'Libre', detalle: 'con ' + (parts[0] === equipo ? parts[1] : parts[0]), tipo: 'libre' };
+  }
   return { rol: '—', detalle: '—', tipo: 'vacio' };
 }
 
 function tablaCompletaHTML(datos) {
-  const filas = datos.map(f => {
-    const [n, zona, hora, eqA, eqB, obs1, obs2, desc1, desc2, arb1, arb2] = f;
-    const zonaClass = zona === 1 ? 'zona1' : 'zona2';
-    return `<tr>
-      <td class="num">${n}</td>
-      <td class="${zonaClass}">Zona ${zona}</td>
-      <td class="dim">${hora || '—'}</td>
-      <td class="equipo">${eqA}</td>
-      <td class="equipo">${eqB}</td>
-      <td>${obs1}</td><td>${obs2}</td>
-      <td>${desc1}</td><td>${desc2}</td>
-      <td>${arb1}</td><td>${arb2}</td>
-    </tr>`;
-  }).join('');
-  return `<table class="completa">
-    <thead>
-      <tr>
-        <th rowspan="2">N°</th>
-        <th rowspan="2">Zona</th>
-        <th rowspan="2">Hora</th>
-        <th rowspan="2">Equipo A</th>
-        <th rowspan="2">Equipo B</th>
-        <th colspan="2">Observan (misma zona)</th>
-        <th colspan="2">Descansan (zona contraria)</th>
-        <th colspan="2">Arbitran / Mesa (zona contraria)</th>
-      </tr>
-      <tr class="grp">
-        <th>Eq. 1</th><th>Eq. 2</th>
-        <th>Eq. 1</th><th>Eq. 2</th>
-        <th>Eq. 1</th><th>Eq. 2</th>
-      </tr>
-    </thead>
+  const filas = datos.map(([t, h, partido, obs, plan, libre]) => `<tr>
+    <td class="num">${t}</td>
+    <td class="dim">${h || '—'}</td>
+    <td class="col-partido">${partido}</td>
+    <td class="col-obs">${obs}</td>
+    <td class="col-plan">${plan}</td>
+    <td class="col-libre">${libre}</td>
+  </tr>`).join('');
+  return `<div class="table-wrap"><table class="completa">
+    <thead><tr>
+      <th>Turno</th><th>Hora</th>
+      <th class="col-partido">Partido</th>
+      <th class="col-obs">Observación</th>
+      <th class="col-plan">Planilla / Arbitraje</th>
+      <th class="col-libre">Libre</th>
+    </tr></thead>
     <tbody>${filas}</tbody>
-  </table>`;
+  </table></div>`;
 }
 
 function tablaCondensadaHTML(datos, equipo) {
-  const filas = datos.map(f => {
-    const [n, zona, hora] = f;
-    const zonaClass = zona === 1 ? 'zona1' : 'zona2';
-    const info = rolDeEquipo(f, equipo);
+  const filas = datos.map(d => {
+    const info = rolDeEquipo(d, equipo);
     return `<tr>
-      <td class="num">${n}</td>
-      <td class="${zonaClass}">Zona ${zona}</td>
-      <td class="dim">${hora || '—'}</td>
+      <td class="num">${d[0]}</td>
+      <td class="dim">${d[1] || '—'}</td>
       <td><span class="rol-badge rol-${info.tipo}">${info.rol}</span></td>
       <td class="detalle">${info.detalle}</td>
     </tr>`;
   }).join('');
-  return `<table class="condensada">
-    <thead>
-      <tr>
-        <th>N°</th>
-        <th>Zona en cancha</th>
-        <th>Hora</th>
-        <th>Rol de ${equipo}</th>
-        <th>Detalle</th>
-      </tr>
-    </thead>
+  return `<div class="table-wrap"><table class="condensada">
+    <thead><tr>
+      <th>Turno</th><th>Hora</th><th>Rol de ${equipo}</th><th>Detalle</th>
+    </tr></thead>
     <tbody>${filas}</tbody>
-  </table>`;
+  </table></div>`;
 }
 
-function renderVista(datos, containerId, filtro) {
-  const html = filtro === 'todos' ? tablaCompletaHTML(datos) : tablaCondensadaHTML(datos, filtro);
-  document.getElementById(containerId).innerHTML = html;
+function turnoCardHTML(turnoData) {
+  const [t, h, partido, obs, plan, libre] = turnoData;
+  return `<div class="turno-card">
+    <div class="turno-card-header">Turno ${t}${h ? ' · ' + h : ''}</div>
+    <div class="turno-roles">
+      <div class="role-item role-partido">
+        <span class="role-label">Partido</span>
+        <span class="role-match">${partido}</span>
+      </div>
+      <div class="role-item role-obs">
+        <span class="role-label">Observación</span>
+        <span class="role-match">${obs}</span>
+      </div>
+      <div class="role-item role-plan">
+        <span class="role-label">Planilla / Arbitraje</span>
+        <span class="role-match">${plan}</span>
+      </div>
+      <div class="role-item role-libre">
+        <span class="role-label">Libre</span>
+        <span class="role-match">${libre}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderContenedor(datos, id) {
+  let html;
+  if (filtroTurno !== null) {
+    html = turnoCardHTML(datos[filtroTurno - 1]);
+  } else if (filtroEquipo !== 'todos') {
+    html = tablaCondensadaHTML(datos, filtroEquipo);
+  } else {
+    html = tablaCompletaHTML(datos);
+  }
+  document.getElementById(id).innerHTML = html;
 }
 
 function refrescarVistas() {
-  renderVista(partidos4to, 'tabla-4to', filtroEquipo);
-  renderVista(partidos2do, 'tabla-2do', filtroEquipo);
+  renderContenedor(turnos4to, 'tabla-4to');
+  renderContenedor(turnos2do, 'tabla-2do');
 }
 
-function setFiltro(equipo) {
+function setFiltroEquipo(equipo) {
   filtroEquipo = equipo;
-  document.querySelectorAll('.chip').forEach(c => c.classList.toggle('activo', c.dataset.equipo === equipo));
+  filtroTurno  = null;
+  document.querySelectorAll('.chip[data-equipo]').forEach(c =>
+    c.classList.toggle('activo', c.dataset.equipo === equipo));
+  document.querySelectorAll('.chip[data-turno]').forEach(c =>
+    c.classList.remove('activo'));
+  refrescarVistas();
+}
+
+function setFiltroTurno(num) {
+  if (filtroTurno === num) {
+    filtroTurno = null;
+    document.querySelectorAll('.chip[data-turno]').forEach(c => c.classList.remove('activo'));
+    refrescarVistas();
+    return;
+  }
+  filtroTurno  = num;
+  filtroEquipo = 'todos';
+  document.querySelectorAll('.chip[data-equipo]').forEach(c =>
+    c.classList.toggle('activo', c.dataset.equipo === 'todos'));
+  document.querySelectorAll('.chip[data-turno]').forEach(c =>
+    c.classList.toggle('activo', Number(c.dataset.turno) === num));
   refrescarVistas();
 }
 
@@ -408,7 +507,7 @@ function setVista(v) {
   document.querySelectorAll('.vista').forEach(el => el.classList.remove('activa'));
   document.querySelectorAll('.tab').forEach(el => el.classList.remove('activo'));
   document.getElementById('vista-' + v).classList.add('activa');
-  document.getElementById('tab-' + v).classList.add('activo');
+  document.getElementById('tab-'  + v).classList.add('activo');
 }
 
 refrescarVistas();
